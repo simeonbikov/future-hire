@@ -11,7 +11,7 @@ app.use(cors());
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.DATABASE_URL ? true : false // Update it the code since I wasnt able to listen the port!//
 });
 
 pool.connect();
