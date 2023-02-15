@@ -11,7 +11,7 @@ app.use(cors());
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.DATABASE_URL ? true : false,
 });
 
 pool.connect();
@@ -28,7 +28,7 @@ app.get("/students", (req, res) => {
     });
 });
 
-// GET "/{id}"
+// GET "/students/{id}"
 app.get("/students/:id", (req, res) => {
   const requestedStudentId = parseInt(req.params.id);
   if (!requestedStudentId) {
