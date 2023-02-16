@@ -1,4 +1,3 @@
-drop table if exists student_url;
 drop table if exists skills;
 drop table if exists students;
 drop table if exists students_account;
@@ -22,15 +21,13 @@ CREATE TABLE students
     professional_interest VARCHAR(120),
     gender VARCHAR(20),
     photo_url VARCHAR(200),
-    details VARCHAR(500) 
+    details VARCHAR(500),
+    github_link VARCHAR(120),
+    linkedin_link VARCHAR(120),
+    hire VARCHAR(120)
 );
 
-CREATE TABLE student_url 
-(
-    id SERIAL PRIMARY KEY,
-    student_id INT REFERENCES students(id),
-    link VARCHAR(120) NOT NULL
-);
+
 CREATE TABLE skills 
 (
     id SERIAL PRIMARY KEY,
@@ -56,25 +53,25 @@ VALUES ('emeka123@gmail.com', 'password@1');
 
 
 INSERT INTO students
-    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender)
+    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender,github_link,linkedin_link,hire)
 VALUES
-    (1,'Kavita Patil', 'West Midlands', '2023-03-31','kavita.123@gmail.com',079826308100,'Fullstack Developer','female');
+    (1,'Kavita Patil', 'West Midlands', '2023-03-31','kavita.123@gmail.com',079826308100,'Fullstack Developer','female','https://github.com/kavitapatil','https://www.linkedin.com/in/kavitapatil-5bb76423a','no');
 INSERT INTO students
-    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender)
+    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender,github_link,linkedin_link,hire)
 VALUES
-    (2,'Franklin', 'West Midlands', '2023-03-31','franklin.123@gmail.com',079826308200,'Frontend Developer','male');
+    (2,'Franklin', 'West Midlands', '2023-03-31','franklin.123@gmail.com',079826308200,'Frontend Developer','male','https://github.com/franklin','https://www.linkedin.com/in/franklin-5bb76423a','no');
 INSERT INTO students
-    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender)
+    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender,github_link,linkedin_link,hire)
 VALUES
-    (3,'Simeon', 'West Midlands', '2023-03-31','simeon.123@gmail.com',079826308300,'Fullstack Developer','male');
+    (3,'Simeon', 'West Midlands', '2023-03-31','simeon.123@gmail.com',079826308300,'Fullstack Developer','male', 'https://github.com/simeon','https://www.linkedin.com/in/simeon-5bb76423a','no');
 INSERT INTO students
-    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender)
+    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender,github_link,linkedin_link,hire)
 VALUES
-    (4,'Brolin', 'West Midlands', '2023-03-31','brolin123@gmail.com',079826308400,'Frontend Developer','male');
+    (4,'Brolin', 'West Midlands', '2023-03-31','brolin123@gmail.com',079826308400,'Frontend Developer','male','https://github.com/brolin','https://www.linkedin.com/in/brolin-5bb76423a','no');
 INSERT INTO students
-    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender)
+    (student_account_id,full_name,cohort,passing_year,email,mobile,professional_interest,gender,github_link,linkedin_link,hire)
 VALUES
-    (5,'Emeka', 'West Midlands', '2023-03-31','emeka123@gmail.com',079826308500,'Frontend Developer','male');
+    (5,'Emeka', 'West Midlands', '2023-03-31','emeka123@gmail.com',079826308500,'Frontend Developer','male', 'https://github.com/emeka','https://www.linkedin.com/in/emeka-5bb76423a','no');
 
 
 INSERT INTO skills
@@ -162,49 +159,9 @@ INSERT INTO skills
 VALUES
     (5, 'NODE');      
 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (1, 'https://github.com/kavitapatil'); 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (1, 'https://www.linkedin.com/in/kavitapatil-5bb76423a'); 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (2, 'https://github.com/franklin'); 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (2, 'https://www.linkedin.com/in/franklin-5bb76423a'); 
 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (3, 'https://github.com/simeon'); 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (3, 'https://www.linkedin.com/in/simeon-5bb76423a');
 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (4, 'https://github.com/brolin'); 
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (4, 'https://www.linkedin.com/in/brolin-5bb76423a'); 
-
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (5, 'https://github.com/emeka');    
-INSERT INTO student_url
-    (student_id, link)
-VALUES
-    (5, 'https://www.linkedin.com/in/emeka-5bb76423a');                           
+                      
 
 
 
