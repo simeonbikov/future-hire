@@ -1,31 +1,30 @@
+// import { response } from "express";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import "./Home.css";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 
 export function Home() {
-	const [message, setMessage] = useState("Loading...");
+	const[students, setStudents] = useState([]);
+	// const [message, setMessage] = useState("Loading...");
 
 	useEffect(() => {
-		fetch("/api")
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
-			})
-			.then((body) => {
-				setMessage(body.message);
-			})
-			.catch((err) => {
-				console.error(err);
+		fetch("http://localhost:3100/api/students")
+			.then((response) => response.json())
+			.then((data) => {
+				setStudents(data);
 			});
-	}, []);
-
+}, []);
+console.log(students);
 	return (
 		<main role="main">
-			<div>
+			{students.map((student, index) =>{
+				return(
+					<h1 key={index}> {student.full_name} </h1>
+				);
+			})}
+			{/* <div>
 				<img
 					className="logo"
 					data-qa="logo"
@@ -36,7 +35,8 @@ export function Home() {
 					{message}
 				</h1>
 				<Link to="/about/this/site">About</Link>
-			</div>
+
+			</div> */}
 		</main>
 	);
 }
