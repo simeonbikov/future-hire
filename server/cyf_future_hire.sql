@@ -21,7 +21,8 @@ CREATE TABLE students
     mobile VARCHAR(20),
     professional_interest VARCHAR(120),
     gender VARCHAR(20),
-    photo_url VARCHAR(200)
+    photo_url VARCHAR(200),
+    details VARCHAR(500) 
 );
 
 CREATE TABLE student_url 
