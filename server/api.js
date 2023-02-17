@@ -1,12 +1,9 @@
 import { Router } from "express";
 import logger from "./utils/logger";
 import db from "./db";
-const cors = require("cors");
 
 const router = Router();
-router.use(cors({
-    accessControlAllowOrigin: "*",
-}));
+
 router.get("/", (_, res) => {
 	logger.debug("Welcoming everyone...");
 	res.json({ message: "Hello, world!" });
