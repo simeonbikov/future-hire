@@ -6,22 +6,22 @@ import "./Home.css";
 // import logo from "./logo.svg";
 
 export function Home() {
-	const[students, setStudents] = useState([]); // <---- Const created //
+	const[graduates, setGraduates] = useState([]); // <---- Const created //
 	// const [message, setMessage] = useState("Loading...");
 
 	useEffect(() => {
-		fetch("api/students") //<--- Listening in the port//
+		fetch("api/graduates") //<--- Listening in the port//
 			.then((response) => response.json())
 			.then((data) => {
-				setStudents(data);
+				setGraduates(data);
 			});
 }, []);
-console.log(students);
+console.log(graduates);
 	return (
 		<main role="main">
-			{students.map((student, index) =>{
+			{graduates.map((graduate, index) =>{
 				return(
-					<h1 key={index}> {student.full_name} </h1>  //<--- displays the full names
+					<h1 key={index}> {graduate.full_name} </h1>  //<--- displays the full names
 				);
 			})}
 			{/* <div>
