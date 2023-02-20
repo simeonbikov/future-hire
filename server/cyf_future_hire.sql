@@ -1,22 +1,21 @@
 drop table if exists skills;
-drop table if exists students;
-drop table if exists students_account;
+drop table if exists graduates;
+drop table if exists graduates_account;
 
-CREATE TABLE students_account 
+CREATE TABLE graduates_account 
 (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
-    pwd VARCHAR(10) NOT NULL
+    pwd VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE students 
+CREATE TABLE graduates 
 (
     id SERIAL PRIMARY KEY,
-    student_account_id INT REFERENCES students_account(id),
+    graduate_account_id INT REFERENCES graduates_account(id),
     full_name VARCHAR(120) NOT NULL,
     cohort VARCHAR(200) NOT NULL,
-    passing_year date NOT NULL,
-    email VARCHAR(120) NOT NULL,
+    passing_year VARCHAR(10) NOT NULL,
     mobile VARCHAR(20),
     professional_interest VARCHAR(120),
     gender VARCHAR(20),
@@ -28,11 +27,10 @@ CREATE TABLE students
     
 );
 
-
 CREATE TABLE skills 
 (
     id SERIAL PRIMARY KEY,
-    student_id INT REFERENCES students(id),
+    graduate_id INT REFERENCES graduates(id),
     skill VARCHAR(50) NOT NULL
 );
 
