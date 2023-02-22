@@ -19,7 +19,7 @@ const[graduate, setGraduate] = useState({});
 			>
 				<img
 					src={graduate.photo_url}
-					alt=""
+					alt={graduate.full_name}
 					width="100"
 					className="img-fluid rounded-circle mb-3 img-thumbnail thumbnail shadow-sm"
 				></img>
