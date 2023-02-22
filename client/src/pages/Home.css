@@ -1,3 +1,7 @@
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
 .logo {
 	width: 100px;
 }
@@ -9,3 +13,4 @@
 .message:hover {
 	background-color: yellow;
 }
+
