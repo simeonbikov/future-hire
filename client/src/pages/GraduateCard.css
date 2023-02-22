@@ -1,0 +1,41 @@
+.thumbnail {
+    width: 164px;
+    height: 164px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.thumbnail img {
+    width: 164px;
+    height: 100%;
+    object-fit: cover;
+}
+/* .card_bg {
+    background-color: rgb(240, 239, 239);
+} */
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+.btn {
+    background-color: #EC4242;
+}
+.social-link:hover,
+.social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 1;
+    border-radius: 25px;
+}

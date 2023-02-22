@@ -1,9 +1,6 @@
-// import { response } from "express";
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
-
 import "./Home.css";
-// import logo from "./logo.svg";
+import GraduateCard from './GraduateCard';
 
 export function Home() {
 	const[graduates, setGraduates] = useState([]); // <---- Const created //
@@ -16,29 +13,15 @@ export function Home() {
 				setGraduates(data);
 			});
 }, []);
-console.log(graduates);
-	return (
-		<main role="main">
-			{graduates.map((graduate, index) =>{
-				return(
-					<h1 key={index}> {graduate.full_name} </h1>  //<--- displays the full names
-				);
-			})}
-			{/* <div>
-				<img
-					className="logo"
-					data-qa="logo"
-					src={logo}
-					alt="Just the React logo"
-				/>
-				<h1 className="message" data-qa="message">
-					{message}
-				</h1>
-				<Link to="/about/this/site">About</Link>
 
-			</div> */}
-		</main>
-	);
+return (
+	<div className="container">
+	<div className="row text-center ">
+		{graduates?.map((graduate) => (
+				<GraduateCard key={graduate.id} graduate_detail={graduate} />
+		))}
+	</div>
+	</div>
+);
 }
-
 export default Home;
