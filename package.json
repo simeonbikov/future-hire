@@ -79,6 +79,7 @@
 		"morgan": "^1.10.0",
 		"pg": "^8.9.0",
 		"use-history": "^1.4.1",
+		"react-typed": "^1.2.0",
 		"winston": "^3.8.2"
 	},
 	"engines": {
