@@ -23,8 +23,9 @@ CREATE TABLE graduates
     details VARCHAR(500),
     github_link VARCHAR(120),
     linkedin_link VARCHAR(120),
-    hire VARCHAR(120)
-    
+    portfolio_link VARCHAR(120),
+    hire VARCHAR(120),
+    experience TEXT
 );
 
 CREATE TABLE skills 
