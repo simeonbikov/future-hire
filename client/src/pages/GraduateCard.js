@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./GraduateCard.css";
 
 function Graduategraduates ({ graduate_detail }) {
 
 const[graduate, setGraduate] = useState({});
+
+    const navigate = useNavigate();
+    const openGraduateProfile = () => {
+		navigate(`/graduates/${graduate.id}`);
+	};
 
   useEffect(() => {
 
@@ -15,7 +21,7 @@ const[graduate, setGraduate] = useState({});
 		<div className=" col-xl-3 col-sm-6 mb-5">
 			<div
 				className="card_bg card cbg-white shadow-lg py-5 px-4"
-				style={{ "border-radius": "25px" }}
+				style={{ "borderRadius": "25px" }}
 			>
 				<img
 					src={graduate.photo_url}
@@ -27,7 +33,7 @@ const[graduate, setGraduate] = useState({});
 				<h6 className="m-2">{graduate.professional_interest}</h6>
 				<span className="small text-uppercase text-muted">Birmingham</span>
 				<br />
-				<button className="btn btn-danger" style={{ "border-radius": "25px" }}>
+				<button onClick={openGraduateProfile} className="btn btn-danger" style={{ "borderRadius": "25px" }}>
 					View Full Profile
 				</button>
 				<ul className="social mb-0 list-inline mt-3">
