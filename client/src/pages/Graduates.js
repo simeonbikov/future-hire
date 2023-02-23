@@ -84,7 +84,7 @@ const Graduates = () => {
 				<h1>{graduateData.id}</h1>
 				<h1>{graduateData.full_name}</h1>
 			</div> */}
-			<ArrowRight />
+			{/* <ArrowRight /> */}
 			<a href={graduateData.linkedin_link} className="social-link">
 				<i className="bi bi-linkedin"></i>
 			</a>
