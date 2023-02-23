@@ -4,7 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 const Graduates = () => {
 	const [graduateData, setGraduateData] = useState([]);
 	const navigate = useNavigate();
-	// const params = useParams();
 	const { id } = useParams();
 
 	const goBack = () => {
@@ -34,7 +33,6 @@ const Graduates = () => {
 				<h1>{graduateData.id}</h1>
 				<h1>{graduateData.full_name}</h1>
 			</div>
-			{/* <button onClick={() => push("/")}>Go back</button> */}
 			<button onClick={goBack}>Back</button>
 		</main>
 	);
