@@ -1,0 +1,12 @@
+.testimonial {
+    background-color: rgb(224, 221, 221);
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.testimonial-item {
+    margin-left: 10%;
+    margin-right: 10%;
+}

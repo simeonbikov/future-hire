@@ -25,9 +25,9 @@ const[graduate, setGraduate] = useState({});
 				></img>
 				<h5 className="m-2">{graduate.full_name}</h5>
 				<h6 className="m-2">{graduate.professional_interest}</h6>
-				<span className="small text-uppercase text-muted">Birmingham</span>
+				<span className="small text-uppercase text-muted">{graduate.cohort}</span>
 				<br />
-				<button className="btn btn-danger" style={{ "border-radius": "25px" }}>
+				<button className="btn btn-sm btn-danger" style={{ "border-radius": "25px" }}>
 					View Full Profile
 				</button>
 				<ul className="social mb-0 list-inline mt-3">
