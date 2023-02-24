@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // import { ArrowRight } from "react-bootstrap-icons";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Button, Container, Row, Col, Image } from "react-bootstrap";
 // import bootstrap from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Graduates.css";
@@ -59,7 +59,10 @@ const Graduates = () => {
 					<Col sm={7}>
 						<h1>{graduateData.full_name}</h1>
 						<h2>{graduateData.professional_interest}</h2>
-						<h3>{graduateData.cohort}</h3>
+						<h3>
+							{graduateData.cohort}
+							<i className="bi bi-geo-alt-fill"></i>
+						</h3>
 					</Col>
 				</Row>
 			</Container>
@@ -85,9 +88,18 @@ const Graduates = () => {
 				<h1>{graduateData.full_name}</h1>
 			</div> */}
 			{/* <ArrowRight /> */}
-			<a href={graduateData.linkedin_link} className="social-link">
+			<a href={graduateData.portfolio_link} target="_blank" rel="noreferrer">
+				<i className="bi bi-file-earmark-text"></i>
+			</a>
+			<a href={graduateData.github_link} target="_blank" rel="noreferrer">
+				<i className="bi bi-github"></i>
+			</a>
+			<a href={graduateData.linkedin_link} target="_blank" rel="noreferrer">
 				<i className="bi bi-linkedin"></i>
 			</a>
+			<Button>
+				<i className="bi bi-github"></i>
+			</Button>
 		</main>
 	);
 };
