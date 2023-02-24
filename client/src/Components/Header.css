@@ -1,0 +1,136 @@
+.header {
+  background-color: white;
+  padding: 10px;
+}
+
+.header-desktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Helvetica";
+}
+
+.navbar-desktop__logo img {
+  height: 50px;
+  width: auto;
+}
+
+
+
+.navbar-desktop__links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-desktop__links a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.header-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .header-desktop {
+    display: none;
+    font-family: "Helvetica";
+  }
+
+  .header-mobile {
+    margin-right: 2px;
+    display: block;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+
+  .navbar-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navbar-mobile__logo img{
+    height: 30px;
+    width: auto;
+  }
+
+  .navbar-mobile__hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+
+
+  
+
+  .navbar-mobile__logo a {
+    font-size: 20px;
+    padding: 5px;
+  }
+
+}
+
+
+
+
+/* For mobile */
+
+.navbar-mobile__hamburger {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.navbar-mobile__hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: rgb(255, 0, 0);
+  margin: 5px 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-mobile__hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-mobile__hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-mobile__hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -8px);
+}
+
+.navbar-mobile__links {
+  display: none;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  z-index: 99;
+  padding: 1rem;
+  text-align: center;
+}
+
+.navbar-mobile__links.open {
+  display: block;
+}
+
+
