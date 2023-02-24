@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-// import { ArrowRight } from "react-bootstrap-icons";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
-// import bootstrap from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Graduates.css";
 
@@ -28,85 +26,93 @@ const Graduates = () => {
 		}
 	};
 
-	console.log(graduateData);
-
 	useEffect(() => {
 		getData();
 	}, []);
 
 	return (
 		<main>
-			<button onClick={goBack}>Back</button>
-
-			<Container>
-				<Row className="px-4 my-5">
-					<Col sm={5}>
-						<Image
-							src={graduateData.photo_url}
-							alt={graduateData.full_name}
-							fluid
-							roundedCircle
-							thumbnail
-							width={400}
-						/>
-						{/* <img
-							src={graduateData.photo_url}
-							alt={graduateData.full_name}
-							width="100"
-							className="img-fluid rounded-circle mb-3 img-thumbnail thumbnail shadow-sm"
-						></img> */}
-					</Col>
-					<Col sm={7}>
-						<h1>{graduateData.full_name}</h1>
-						<h2>{graduateData.professional_interest}</h2>
-						<h3>
-							{graduateData.cohort}
-							<i className="bi bi-geo-alt-fill"></i>
-						</h3>
-					</Col>
-				</Row>
-			</Container>
-			<Container>
-				<h4>Summary</h4>
-				<p>{graduateData.details}</p>
-			</Container>
-			<Container>
-				<h4>Skills</h4>
-				<p>{graduateData.details}</p>
-			</Container>
-			<Container>
-				<h4>Past Experience</h4>
-				<p>{graduateData.experience}</p>
-			</Container>
-			<Container>
-				<h4>Summary</h4>
-				<p>{graduateData.details}</p>
-			</Container>
-			{/* <i className="bi bi-linkedin"></i> */}
-			{/* <div>
-				<h1>{graduateData.id}</h1>
-				<h1>{graduateData.full_name}</h1>
-			</div> */}
-			{/* <ArrowRight /> */}
-			<a href={graduateData.portfolio_link} target="_blank" rel="noreferrer">
-				<i className="bi bi-file-earmark-text"></i>
-			</a>
-			<a href={graduateData.github_link} target="_blank" rel="noreferrer">
-				<i className="bi bi-github"></i>
-			</a>
-			<a href={graduateData.linkedin_link} target="_blank" rel="noreferrer">
-				<i className="bi bi-linkedin"></i>
-			</a>
-			<Button>
-				<i className="bi bi-github"></i>
-			</Button>
+			<div className="profile">
+				<div>
+					<Button
+						variant="danger"
+						size="lg"
+						onClick={goBack}
+						className="profile-button"
+					>
+						Back to the List
+					</Button>
+				</div>
+				<Container className="profile-container">
+					<Row className="px-1 my-1">
+						<Col md={6} className="profile-col">
+							<Image
+								src={graduateData.photo_url}
+								alt={graduateData.full_name}
+								fluid
+								roundedCircle
+								thumbnail
+								width={400}
+							/>
+						</Col>
+						<Col md={6} className="profile-col">
+							<h1>{graduateData.full_name}</h1>
+							<h2>{graduateData.professional_interest}</h2>
+							<h3>
+								{graduateData.cohort}
+								<i className="bi bi-geo-alt-fill profile-geo"></i>
+							</h3>
+						</Col>
+					</Row>
+				</Container>
+				<div>
+					<h4>Summary</h4>
+					<p>{graduateData.details}</p>
+				</div>
+				<div>
+					<h4>Skills</h4>
+					<p>{graduateData.details}</p>
+				</div>
+				<div>
+					<h4>Past Experience</h4>
+					<p>{graduateData.experience}</p>
+				</div>
+				<div>
+					<Button
+						variant="link"
+						className="profile-button"
+						onClick={() => window.open(graduateData.portfolio_link, "_blank")}
+					>
+						<i className="bi bi-file-earmark-text profile-icons"></i>
+					</Button>
+					<Button
+						variant="link"
+						className="profile-button"
+						onClick={() => window.open(graduateData.github_link, "_blank")}
+					>
+						<i className="bi bi-github profile-icons"></i>
+					</Button>
+					<Button
+						variant="link"
+						className="profile-button"
+						onClick={() => window.open(graduateData.linkedin_link, "_blank")}
+					>
+						<i className="bi-linkedin profile-icons"></i>
+					</Button>
+				</div>
+				<div>
+					<Button
+						variant="danger"
+						size="lg"
+						onClick={() => window.open(graduateData.portfolio_link, "_blank")}
+						className="profile-button"
+					>
+						Contact CodeYourFuture
+					</Button>
+				</div>
+			</div>
 		</main>
 	);
 };
 
 export default Graduates;
-
-
-
-
-{/* <pre>{JSON.stringify(graduateData, null, 2)}</pre>; */}
