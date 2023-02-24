@@ -4,16 +4,15 @@ import GraduateCard from './GraduateCard';
 import { TestimonialCard } from './TestimonialCard';
 
 export function Home() {
-	const[graduates, setGraduates] = useState([]); // <---- Const created //
-	// const [message, setMessage] = useState("Loading...");
+	const [graduates, setGraduates] = useState([]);
 
 	useEffect(() => {
-		fetch("api/graduates") //<--- Listening in the port//
+		fetch("api/graduates")
 			.then((response) => response.json())
 			.then((data) => {
 				setGraduates(data);
 			});
-}, []);
+	}, []);
 
 return (
 	<div>
@@ -39,3 +38,4 @@ return (
 );
 }
 export default Home;
+

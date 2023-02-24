@@ -4,6 +4,9 @@ import db from "./db";
 
 const router = Router();
 
+// const bodyParser = require("body-parser");
+// router.use(bodyParser.json());
+
 router.get("/", (_, res) => {
 	logger.debug("Welcoming everyone...");
 	res.json({ message: "Hello, world!" });
