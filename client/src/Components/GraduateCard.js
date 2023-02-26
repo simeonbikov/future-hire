@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./GraduateCard.css";
 
-function Graduategraduates ({ graduate_detail }) {
+function GraduateCard ({ graduate_detail }) {
 
 const[graduate, setGraduate] = useState({});
 
@@ -21,7 +21,7 @@ const[graduate, setGraduate] = useState({});
 		<div className=" col-xl-3 col-sm-6 mb-5">
 			<div
 				className="card_bg card cbg-white shadow-lg py-5 px-4"
-				style={{ borderRadius: "25px" }}
+				style={{ "borderRadius": "25px" }}
 			>
 				<img
 					src={graduate.photo_url}
@@ -31,15 +31,9 @@ const[graduate, setGraduate] = useState({});
 				></img>
 				<h5 className="m-2">{graduate.full_name}</h5>
 				<h6 className="m-2">{graduate.professional_interest}</h6>
-				<span className="small text-uppercase text-muted">
-					{graduate.cohort}
-				</span>
+				<span className="small text-uppercase text-muted">{graduate.cohort}</span>
 				<br />
-				<button
-					onClick={openGraduateProfile}
-					className="btn btn-danger"
-					style={{ borderRadius: "25px" }}
-				>
+				<button onClick={openGraduateProfile} className="btn btn-sm btn-danger" style={{ "borderRadius": "25px" }}>
 					View Full Profile
 				</button>
 				<ul className="social mb-0 list-inline mt-3">
@@ -58,5 +52,4 @@ const[graduate, setGraduate] = useState({});
 		</div>
 	);
 }
-
-export default Graduategraduates;
+export default GraduateCard;

@@ -13,4 +13,10 @@ body {
 .message:hover {
 	background-color: yellow;
 }
+.new4 {
+	border-bottom: 20px solid #EC4242;
+	width: 100%;
+	margin-bottom: 50px;
+}
+
 
