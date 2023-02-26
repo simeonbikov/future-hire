@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./GraduateCard.css";
 
-function Graduategraduates ({ graduate_detail }) {
+function GraduateCard ({ graduate_detail }) {
 
 const[graduate, setGraduate] = useState({});
 
@@ -52,3 +52,4 @@ const[graduate, setGraduate] = useState({});
 		</div>
 	);
 }
+export default GraduateCard;

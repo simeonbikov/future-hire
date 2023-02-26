@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
-import GraduateCard from '../Components/GraduateCard';
-import { TestimonialCard } from '../Components/TestimonialCard';
+import GraduateCard from "../Components/GraduateCard";
+import { TestimonialCard } from "../Components/TestimonialCard";
 
 export function Home() {
 	const [graduates, setGraduates] = useState([]);
