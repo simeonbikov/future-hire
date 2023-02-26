@@ -1,0 +1,90 @@
+.profile {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	text-align: center;
+}
+
+.profile-container {
+	width: 100%;
+}
+
+.profile-col {
+	height: 100%;
+	margin: auto;
+	padding: 1rem;
+}
+
+.profile-icons {
+	font-size: 3rem;
+	color: black;
+}
+
+.profile-button {
+	margin: 1.3rem 2.5rem;
+}
+
+.profile-geo {
+	font-size: 2.2rem;
+	margin: 1rem;
+	color: red;
+}
+
+.profile-button {
+	margin: 1.3rem;
+}
+
+.profile h1 {
+	font-size: 3rem;
+	font-weight: 600;
+	text-shadow: 2px 2px 4px grey;
+	margin: 1.5rem;
+}
+
+.profile h2 {
+	font-size: 1.9rem;
+	font-weight: 400;
+	margin: 1.5rem;
+}
+
+.profile h3 {
+	font-size: 1.7rem;
+	font-weight: 500;
+	margin: 1.5rem;
+}
+
+.profile h4 {
+	font-size: 1.9rem;
+	font-weight: 600;
+	margin: 1.5rem;
+}
+
+.profile p {
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+	.profile-container {
+		width: 70%;
+	}
+	.profile h1 {
+		font-size: 4rem;
+	}
+
+	.profile h2 {
+		font-size: 2.5rem;
+	}
+
+	.profile h3 {
+		font-size: 2.3rem;
+	}
+
+	.profile h4 {
+		font-size: 2.5rem;
+	}
+
+	.profile p {
+		font-size: 1.5rem;
+	}
+}

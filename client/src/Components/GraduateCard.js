@@ -52,5 +52,3 @@ const[graduate, setGraduate] = useState({});
 		</div>
 	);
 }
-
-export default Graduategraduates;
