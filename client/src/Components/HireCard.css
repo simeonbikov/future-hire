@@ -1,3 +1,10 @@
+.enableBlur>* {
+    filter: blur(2.5px);
+}
+
+.disableBlur {
+    filter: blur(0);
+}
 
 .hired-text {
     font-size: 50px;

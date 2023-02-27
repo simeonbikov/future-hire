@@ -12,7 +12,7 @@ function HireCard({ graduate_detail }) {
 		<div className="row m-5 text-center">
 			<div className="col-xl-3 col-sm-6 mb-5">
 				<div
-					className="card_bg card cbg-white shadow-lg py-5 px-4"
+					className="card_bg card cbg-white shadow-lg py-5 px-4 enableBlur"
 					style={{ borderRadius: "25px" }}
 				>
 					<img
@@ -21,7 +21,7 @@ function HireCard({ graduate_detail }) {
 						width="100"
 						className="img-fluid rounded-circle mb-3 img-thumbnail thumbnail shadow-sm"
 					></img>
-					<span className="hired-text">
+					<span className="disableBlur hired-text">
 						Hired
 					</span>
 					<h5 className="m-2">{graduate.full_name}</h5>
