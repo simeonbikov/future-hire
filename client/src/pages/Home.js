@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import "./Home.css";
 import GraduateCard from "../Components/GraduateCard";
 import { TestimonialCard } from "../Components/TestimonialCard";
+import "./Home.css";
+import Hero from "../Components/Hero";
 
 export function Home() {
 	const [graduates, setGraduates] = useState([]);
@@ -16,6 +17,7 @@ export function Home() {
 
 return (
 	<div>
+		<Hero title="Hire a Graduate" />
 		<div className="container">
 			<div className="text-center m-3 mt-5">
 				<h1>Discover the ideal candidate</h1>
