@@ -32,17 +32,13 @@ CREATE TABLE skills
 (
     id SERIAL PRIMARY KEY,
     graduate_id INT REFERENCES graduates(id),
-    skill VARCHAR(50) NOT NULL
+    skill VARCHAR(20) NOT NULL
 );
 
 
-
-
-
-                      
-
-
-
-
-
-
+CREATE TABLE graduate_skills
+(
+id SERIAL PRIMARY KEY,
+graduate_id INT REFERENCES graduates(id),
+skills_id INT REFERENCES skills(id)      
+);
