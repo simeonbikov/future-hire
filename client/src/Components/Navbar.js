@@ -12,7 +12,7 @@ function Navbar(props) {
       <Link to="/contact-us" onClick={props.onClick} >
         Contact Us
       </Link>
-      <Link to="/donate" onClick={props.onClick} >
+      <Link to="https://codeyourfuture.io/donate" onClick={props.onClick} >
         Donate
       </Link>
     </>
