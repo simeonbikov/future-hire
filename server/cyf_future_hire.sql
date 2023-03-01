@@ -12,7 +12,6 @@ CREATE TABLE graduates_account
 CREATE TABLE graduates 
 (
     id SERIAL PRIMARY KEY,
-    graduate_account_id INT REFERENCES graduates_account(id),
     full_name VARCHAR(120) NOT NULL,
     cohort VARCHAR(200) NOT NULL,
     passing_year VARCHAR(10) NOT NULL,
