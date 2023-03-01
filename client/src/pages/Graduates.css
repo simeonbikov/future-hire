@@ -34,6 +34,16 @@
 	margin: 1.3rem;
 }
 
+.skill-button {
+	background-color: #edede9 !important;
+	color: black !important;
+}
+
+.loading-message {
+	text-align: center;
+	margin: 2rem;
+}
+
 .profile h1 {
 	font-size: 3rem;
 	font-weight: 600;
