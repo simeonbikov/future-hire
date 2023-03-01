@@ -7,7 +7,7 @@ export function TestimonialCard() {
 	return (
 		<section
 			className="testimonial text-center card_sm card cbg-white shadow-lg py-3 px-4 w-50"
-			style={{ "border-radius": "25px" }}
+			style={{ "borderRadius": "25px" }}
 		>
 			<h2 className="heading">Companies appreciation for our graduates</h2>
 			<div
