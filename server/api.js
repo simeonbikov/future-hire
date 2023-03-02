@@ -38,3 +38,14 @@ router.get("/graduates/:id", async (req, res) => {
 });
 
 export default router;
+
+// GET "/skills"
+router.get("/skills", async (_, res) => {
+	const query = "SELECT id,skill FROM skills";
+	try {
+		const skills = await db.query(query);
+		res.json(skills.rows);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
