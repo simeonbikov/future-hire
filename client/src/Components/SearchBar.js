@@ -23,15 +23,3 @@ function SearchBar(props) {
 }
 
 export default SearchBar;
-
-
-  // const [graduates, setGraduates] = useState([]);
-
-	// useEffect(() => {
-	// const fetchUser = fetch("api/graduates")
-	// 		.then((response) => response.json())
-	// 		.then((data) => {
-	// 			setGraduates(data);
-	// 		});
-    //         fetchUser();
-	// }, []);
