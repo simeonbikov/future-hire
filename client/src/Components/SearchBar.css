@@ -1,0 +1,13 @@
+.SearchBar{
+    width: 350px;
+   
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.sBar{
+    width: 350px;
+    height: 40px;
+    border-radius: 40px;
+    padding: 20PX;
+}
