@@ -48,7 +48,7 @@ const Graduates = () => {
 							variant="danger"
 							size="lg"
 							onClick={goBack}
-							className="profile-button"
+							className="profile-button rounded-pill"
 						>
 							Back to the List
 						</Button>
@@ -88,7 +88,7 @@ const Graduates = () => {
 										key={index}
 										variant="secondary"
 										size="lg"
-										className="shadow rounded-pill m-2 skill-button"
+										className="shadow rounded-pill m-2"
 										disabled
 									>
 										{skill}
@@ -104,21 +104,21 @@ const Graduates = () => {
 					<div>
 						<Button
 							variant="link"
-							className="profile-button"
+							className="m-2"
 							onClick={() => window.open(graduateData.portfolio_link, "_blank")}
 						>
 							<i className="bi bi-file-earmark-text profile-icons"></i>
 						</Button>
 						<Button
 							variant="link"
-							className="profile-button"
+							className="m-2"
 							onClick={() => window.open(graduateData.github_link, "_blank")}
 						>
 							<i className="bi bi-github profile-icons"></i>
 						</Button>
 						<Button
 							variant="link"
-							className="profile-button"
+							className="m-2"
 							onClick={() => window.open(graduateData.linkedin_link, "_blank")}
 						>
 							<i className="bi-linkedin profile-icons"></i>
@@ -129,7 +129,7 @@ const Graduates = () => {
 							variant="danger"
 							size="lg"
 							onClick={() => window.open(graduateData.portfolio_link, "_blank")}
-							className="profile-button"
+							className="profile-button rounded-pill"
 						>
 							Contact CodeYourFuture
 						</Button>
