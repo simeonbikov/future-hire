@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import "../pages/Login.css";
-import photoprofile from "../Images/photoprofile.jpeg";
+import "../pages/LoginForm.css";
+import logo from "../Images/cyflogo.png"
 
 
 const Login = () => {
@@ -29,9 +29,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login-form-container">
     <div className="login-form">
-      <img src={photoprofile} alt="Logo" />
+      <img src={logo} alt="Logo" />
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div className="form-group">
@@ -83,7 +82,7 @@ const Login = () => {
           </div>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn-login">
+          <button type="submit" className="login-button">
             Login
           </button>
         </div>
@@ -91,7 +90,6 @@ const Login = () => {
           <a href="/forgot-password">Forgot password?</a>  
         </div>
       </form>
-      </div>
     </div>
   );
 };
