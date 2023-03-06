@@ -21,22 +21,13 @@
 }
 
 .profile-button {
-	margin: 1.3rem 2.5rem;
+	margin: 2.5rem 1rem 1rem;
 }
 
 .profile-geo {
 	font-size: 2.2rem;
 	margin: 1rem;
 	color: red;
-}
-
-.profile-button {
-	margin: 1.3rem;
-}
-
-.skill-button {
-	background-color: #edede9 !important;
-	color: black !important;
 }
 
 .loading-message {
