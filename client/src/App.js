@@ -3,9 +3,7 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import Graduates from "./pages/Graduates";
 import Layout from "./Components/Layout";
-import Login from "./pages/Login";
 import ContactForm from "./pages/Form";
-
 
 const App = () => {
   return (
@@ -14,7 +12,6 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/graduates/:id" element={<Graduates />} />
         <Route path="/about/this/site" element={<About />} />
-        <Route path="/Login" element={<Login />} />
         <Route path="/Contact-Us" element={<ContactForm />} />
       </Routes>
     </Layout>

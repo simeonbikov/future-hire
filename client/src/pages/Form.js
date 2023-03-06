@@ -80,7 +80,7 @@ const Form = () => {
           </div>
           <button
             type="submit"
-            className="form-login"
+            className="submit-button"
             onMouseOver={handleHover}
             onMouseOut={handleMouseOut}
           >
