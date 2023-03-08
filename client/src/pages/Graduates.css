@@ -32,6 +32,7 @@
 
 .profile-button {
 	margin: 1.3rem;
+	
 }
 
 .skill-button {
@@ -97,4 +98,15 @@
 	.profile p {
 		font-size: 1.5rem;
 	}
+}
+
+
+a {
+	text-decoration: none;
+	color: white;
+	
+}
+
+a:hover{
+	color: white;
 }
