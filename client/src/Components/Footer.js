@@ -1,7 +1,7 @@
 import React from "react";
 import "../Components/Footer.css";
 import logo from "../Images/cyflogo.png";
-import Facebook from "../Images/Facebook.png";
+// import Facebook from "../Images/Facebook.png";
 import Instagram from "../Images/instagram.png";
 import Linkedin from "../Images/Linkedin.png";
 
@@ -16,9 +16,9 @@ function Footer() {
           <a href="https://www.linkedin.com/company/codeyourfuture/">
             <img src={Linkedin} alt="Linkedin" className="social-media-icon" />
           </a>
-          <a href="https://www.facebook.com/codeyourfuture.io">
+          {/* <a href="https://www.facebook.com/codeyourfuture.io">
             <img src={Facebook} alt="Facebook" className="social-media-icon" />
-          </a>
+          </a> */}
           <a href="https://www.instagram.com/codeyourfuture_/">
             <img src={Instagram} alt="Instagram" className="social-media-icon" />
           </a>
