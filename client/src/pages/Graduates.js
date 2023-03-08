@@ -140,5 +140,4 @@ const Graduates = () => {
 
 export default Graduates;
 
-{/* <button><a href="mailto:someone@yoursite.com?subject=Need More Information&body=I need more information about [your text]">contact Us</a></button> */}
 
