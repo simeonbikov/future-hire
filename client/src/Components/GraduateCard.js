@@ -21,19 +21,26 @@ const[graduate, setGraduate] = useState({});
 		<div className=" col-xl-3 col-sm-6 mb-5">
 			<div
 				className="card_bg card cbg-white shadow-lg py-5 px-4"
-				style={{ "borderRadius": "25px" }}
+				style={{ borderRadius: "25px" }}
 			>
 				<img
 					src={graduate.photo_url}
 					alt={graduate.full_name}
 					width="100"
 					className="img-fluid rounded-circle mb-3 img-thumbnail thumbnail shadow-sm"
+					crossorigin="anonymous"
 				></img>
 				<h5 className="m-2">{graduate.full_name}</h5>
 				<h6 className="m-2">{graduate.professional_interest}</h6>
-				<span className="small text-uppercase text-muted">{graduate.cohort}</span>
+				<span className="small text-uppercase text-muted">
+					{graduate.cohort}
+				</span>
 				<br />
-				<button onClick={openGraduateProfile} className="btn btn-sm btn-danger" style={{ "borderRadius": "25px" }}>
+				<button
+					onClick={openGraduateProfile}
+					className="btn btn-sm btn-danger"
+					style={{ borderRadius: "25px" }}
+				>
 					View Full Profile
 				</button>
 				<ul className="social mb-0 list-inline mt-3">
