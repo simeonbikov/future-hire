@@ -13,6 +13,7 @@ const App = () => {
         <Route path="/graduates/:id" element={<Graduates />} />
         <Route path="/about/this/site" element={<About />} />
         <Route path="/Contact-Us" element={<ContactUs />} />
+        <Route path="/register" element={<AddGraduateForm />} />
       </Routes>
     </Layout>
   );
