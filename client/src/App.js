@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Graduates from "./pages/Graduates";
 import Layout from "./Components/Layout";
 import ContactUs from "./pages/ContactUs";
+import AddGraduateForm from "./Components/AddGraduateForm";
 
 const App = () => {
   return (
