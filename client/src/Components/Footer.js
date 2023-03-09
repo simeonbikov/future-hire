@@ -1,7 +1,7 @@
 import React from "react";
 import "../Components/Footer.css";
 import logo from "../Images/cyflogo.png";
-import Facebook from "../Images/Facebook.png";
+import Facebook from "../Images/facebookicon.png";
 import Instagram from "../Images/instagram.png";
 import Linkedin from "../Images/Linkedin.png";
 
