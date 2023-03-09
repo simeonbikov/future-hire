@@ -6,11 +6,11 @@ function Navbar(props) {
   return (
 		<>
 			<ul className="navigation"></ul>
-			<Link to="/hire-a-grad" onClick={props.onClick}>
-				Hire a Grad
+			<Link to="Login" onClick={props.onClick}>
+				Login
 			</Link>
-			<Link to="/contact-us" onClick={props.onClick}>
-				Contact Us
+			<Link to="/contact" onClick={props.onClick}>
+				Contact 
 			</Link>
 			<Link to="https://codeyourfuture.io/donate" onClick={props.onClick}>
 				Donate
