@@ -10,10 +10,24 @@ const router = Router();
 // 	next();
 // });
 
-router.use(function (req, res, next) {
-	res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-	res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-	next();
+router.use((req, res, next) => {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+	);
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET, POST, PUT, DELETE, PATCH, OPTIONS"
+	);
+	res.setHeader("Cross-origin-Embedder-Policy", "require-corp");
+	res.setHeader("Cross-origin-Opener-Policy", "same-origin");
+
+	if (req.method === "OPTIONS") {
+		res.sendStatus(200);
+	} else {
+		next();
+	}
 });
 
 router.get("/", (_, res) => {
