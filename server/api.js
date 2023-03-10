@@ -4,11 +4,11 @@ import db from "./db";
 
 const router = Router();
 
-router.use(function (req, res, next) {
-	res.header("Cross-Origin-Embedder-Policy", "require-corp");
-	res.header("Cross-Origin-Opener-Policy", "same-origin");
-	next();
-});
+// router.use(function (req, res, next) {
+// 	res.header("Cross-Origin-Embedder-Policy", "require-corp");
+// 	res.header("Cross-Origin-Opener-Policy", "same-origin");
+// 	next();
+// });
 
 // router.use((req, res, next) => {
 // 	res.setHeader("Access-Control-Allow-Origin", "*");

@@ -17,7 +17,13 @@ const app = express();
 app.use(express.json());
 app.use(configuredHelmet());
 app.use(configuredMorgan());
-
+//====
+app.use((_, res, next) => {
+	res.header("Cross-Origin-Embedder-Policy", "require-corp");
+	res.header("Cross-Origin-Opener-Policy", "same-origin");
+	next();
+});
+//=====
 if (config.production) {
 	app.enable("trust proxy");
 	app.use(httpsOnly());
