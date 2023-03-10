@@ -28,7 +28,8 @@ const[graduate, setGraduate] = useState({});
 					alt={graduate.full_name}
 					width="100"
 					className="img-fluid rounded-circle mb-3 img-thumbnail thumbnail shadow-sm"
-					crossorigin="anonymous"
+					// crossOrigin="anonymous"
+					crossOrigin
 				></img>
 				<h5 className="m-2">{graduate.full_name}</h5>
 				<h6 className="m-2">{graduate.professional_interest}</h6>
