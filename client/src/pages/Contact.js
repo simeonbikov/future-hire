@@ -14,8 +14,8 @@ const ContactUs = () => {
 				</div>
 				<div className="form">
 					<div className="button-container">
-						<button type="submit" class="submit-button">
-							<a href="mailto:someone@yoursite.com" class="submit-button-link">
+						<button type="submit" className="submit-button">
+							<a href="mailto:someone@yoursite.com" className="submit-button-link">
 								Email Us
 							</a>
 						</button>
@@ -27,4 +27,4 @@ const ContactUs = () => {
 };
 
 
-export default ContactUs
+export default ContactUs;

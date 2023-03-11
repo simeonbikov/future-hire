@@ -13,7 +13,6 @@ export function Home() {
 	const [filteredGraduates, setFilteredGraduates] = useState([]);
 	const [allSkills, setAllSkills] = useState([]);
 	const [selectedSkills, setSelectedSkills] = useState([]);
-  const [filter, setFilter] = useState([]);
 
 	useEffect(() => {
 		fetch("api/graduates")
@@ -22,7 +21,6 @@ export function Home() {
 				setGraduates(data);
 				setFilteredGraduates(data);
 				getSkills(data);
-        setFilter(data);
 			});
 	}, []);
 
@@ -77,7 +75,12 @@ export function Home() {
 			<Hero title="Hire a Graduate" />
 			<div className="container">
 				<div className="text-center m-3 mt-5">
-					<SearchBar filterSearch={setFilter} graduate={graduates} setGraduate={setGraduates} filter={filter} />
+					<SearchBar
+						filterSearch={setFilteredGraduates}
+						graduate={graduates}
+						setGraduate={setGraduates}
+						filter={filteredGraduates}
+					/>
 					<h1>Discover the ideal candidate</h1>
 					<p className="fs-5">
 						Bridging the gap between talented CodeYourFuture graduates and
@@ -96,7 +99,7 @@ export function Home() {
 					})}
 				</div>
 				<div className="row m-5 text-center ">
-					{filter.map((graduate) => {
+					{filteredGraduates.map((graduate) => {
 						if (graduate.hired) {
 							return <HireCard key={graduate.id} graduate_detail={graduate} />;
 						} else {
