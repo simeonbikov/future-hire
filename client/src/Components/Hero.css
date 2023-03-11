@@ -38,7 +38,7 @@ body {
 
 @media only screen and (max-width: 600px) {
   .hero-title {
-    font-size: 8px;
+    font-size: 20px;
   }
   .hero-image{
     margin-top: 40px;
@@ -48,7 +48,7 @@ body {
   .hero-content {
     text-align: center;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     font-family: "Helvetica";
   }
@@ -57,21 +57,15 @@ body {
 
 }
 
-/* Added styles for react-typing-animation */
-.ReactTyping__cursor {
-  display: inline-block;
-  margin-left: 2px;
-  vertical-align: middle;
-  animation: ReactTypingCursor 1s infinite;
+.autotype {
+  overflow: hidden; 
+  white-space: nowrap; 
+  font-size: 1em; 
+  letter-spacing: 0.1em; 
+  animation: autotype 4s steps(40, end);
 }
 
-@keyframes ReactTypingCursor {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+@keyframes autotype {
+  from { width: 0; }
+  to { width: 100%; }
 }
-
-
