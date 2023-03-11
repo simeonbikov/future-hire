@@ -3,7 +3,8 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import Graduates from "./pages/Graduates";
 import Layout from "./Components/Layout";
-import ContactForm from "./pages/Form";
+import ContactUs from "./pages/ContactUs";
+import AddGraduateForm from "./Components/AddGraduateForm";
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/graduates/:id" element={<Graduates />} />
         <Route path="/about/this/site" element={<About />} />
-        <Route path="/Contact-Us" element={<ContactForm />} />
+        <Route path="/Contact-Us" element={<ContactUs />} />
+        <Route path="/register" element={<AddGraduateForm />} />
       </Routes>
     </Layout>
   );

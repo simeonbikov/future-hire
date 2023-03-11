@@ -39,3 +39,80 @@ router.get("/graduates/:id", async (req, res) => {
 });
 
 export default router;
+
+// GET "/skills"
+router.get("/skills", async (_, res) => {
+	const query = "SELECT id,skill FROM skills";
+	try {
+		const skills = await db.query(query);
+		res.json(skills.rows);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
+// Add a new graduate
+router.post("/graduate/register", async (req, res) => {
+	let profilePicture_url = req.body.profilePicture_url;
+	let full_name = req.body.full_name;
+	let cohort = req.body.cohort;
+	let professional_interest = req.body.professional_interest;
+	let cv_link = req.body.cv_link;
+	let linkedIn_url = req.body.linkedIn_url;
+	let gitHub_url = req.body.gitHub_url;
+	let summary = req.body.summary;
+	let experience = req.body.experience;
+	let skills = req.body.skills;
+
+
+	// validation
+	if (
+		!profilePicture_url ||
+		!full_name ||
+		!cohort ||
+		!professional_interest ||
+		!cv_link ||
+		!linkedIn_url ||
+		!gitHub_url ||
+		!summary ||
+		!experience ||
+		!skills.length === 0
+	) {
+		return res.status(400).json("Please input the required fields");
+	} else {
+			const query =
+				"INSERT INTO graduates (full_name, cohort,passing_year,professional_interest,photo_url,portfolio_link,details,gitHub_link,linkedIn_link,experience) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *";
+
+			const values = [
+				full_name,
+				cohort,
+				2023,
+				professional_interest,
+				profilePicture_url,
+				cv_link,
+				summary,
+				gitHub_url,
+				linkedIn_url,
+				experience,
+			];
+
+		db.query(query, values, (err, result) => {
+
+			if (err) {
+				console.error(err.stack);
+				res.status(500).json(err);
+			} else {
+				//if inserted in graduate table
+				const query_skill = "INSERT INTO GRADUATE_SKILLS (graduate_id, skills_id) VALUES ($1, $2)";
+
+				skills.forEach((skill) => {
+					db.query(query_skill, [result.rows[0].id, skill]).catch((error) => {
+						console.error(error);
+						res.status(500).json(error);
+					});
+				});
+				res.status(200).json("Thankyou for registering.");
+			}
+		});
+	}
+});
