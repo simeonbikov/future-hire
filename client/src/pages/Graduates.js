@@ -128,9 +128,8 @@ const Graduates = () => {
 						<Button
 							variant="danger"
 							size="lg"
-							onClick={() => window.open(graduateData.portfolio_link, "_blank")}
-							className="profile-button rounded-pill"
-						>
+							className="profile-button rounded-pill">
+                <a href={`mailto:someone@yoursite.com?subject=Need Information about ${graduateData.full_name}&body=I need more information about this graduate`}>contact Us</a>
 							Contact CodeYourFuture
 						</Button>
 					</div>
@@ -141,3 +140,5 @@ const Graduates = () => {
 };
 
 export default Graduates;
+
+
