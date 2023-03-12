@@ -21,7 +21,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: black;
+  color: white;
   }
   
   .navbar-mobile__links a:last-child {
@@ -47,8 +47,7 @@
   }
   
   .navigation {
-
-  margin-left: 650px;
+  margin-left: 40em;
   }
   
   @media only screen and (max-width: 767px) {
@@ -59,6 +58,7 @@
   .navbar-mobile__links a {
   display: block;
   text-decoration: none; 
+  color: black;
   }
   
   .navbar-mobile__links {
