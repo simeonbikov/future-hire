@@ -129,8 +129,8 @@ const Graduates = () => {
 							variant="danger"
 							size="lg"
 							className="profile-button rounded-pill">
-                <a href={`mailto:someone@yoursite.com?subject=Need Information about ${graduateData.full_name}&body=I need more information about this graduate`}>contact Us</a>
-							Contact CodeYourFuture
+                <a href={`mailto:someone@yoursite.com?subject=Need Information about ${graduateData.full_name}&body=I need more information about this graduate`}>Contact CodeYourFuture</a>
+
 						</Button>
 					</div>
 				</div>
