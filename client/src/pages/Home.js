@@ -5,6 +5,8 @@ import { TestimonialCard } from "../Components/TestimonialCard";
 import "./Home.css";
 import Hero from "../Components/Hero";
 import SkillButton from "../Components/SkillButton";
+import SearchBar from "../Components/SearchBar";
+
 
 export function Home() {
 	const [graduates, setGraduates] = useState([]);
@@ -73,6 +75,12 @@ export function Home() {
 			<Hero title="Hire a Graduate" />
 			<div className="container">
 				<div className="text-center m-3 mt-5">
+					<SearchBar
+						filterSearch={setFilteredGraduates}
+						graduate={graduates}
+						setGraduate={setGraduates}
+						filter={filteredGraduates}
+					/>
 					<h1>Discover the ideal candidate</h1>
 					<p className="fs-5">
 						Bridging the gap between talented CodeYourFuture graduates and

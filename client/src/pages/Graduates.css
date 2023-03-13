@@ -26,7 +26,7 @@
 
 .profile-geo {
 	font-size: 2.2rem;
-	margin: 1rem;
+	margin: 1rem; 
 	color: red;
 }
 
@@ -88,4 +88,15 @@
 	.profile p {
 		font-size: 1.5rem;
 	}
+}
+
+
+a {
+	text-decoration: none;
+	color: white;
+	
+}
+
+a:hover{
+	color: white;
 }
