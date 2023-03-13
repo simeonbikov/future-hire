@@ -42,13 +42,29 @@ router.get("/graduates/:id", async (req, res) => {
 router.get("/graduate_edit/:id", async (req, res) => {
 	const graduateId = parseInt(req.params.id);
 	const query =
-		"SELECT id, g.experience, g.full_name, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience, s.skills_array, s.skills_array_id FROM graduates g INNER JOIN (SELECT gs.graduate_id AS id, array_agg(s.skill) AS skills_array, array_agg(s.id) AS skills_array_id FROM graduate_skills gs INNER JOIN skills s ON s.id = gs.skills_id GROUP BY gs.graduate_id) s USING (id) WHERE id=$1";
-	try {
-		const graduate = await db.query(query, [graduateId]);
-		if (graduate.rows.length <= 0) {
-			res.sendStatus(404);
+		"SELECT id, g.experience, g.full_name, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience FROM graduates g  WHERE id=$1";
+		try {
+			const graduate = await db.query(query, [graduateId]);
+			if (graduate.rows.length <= 0) {
+				res.sendStatus(404);
+			} else {
+
+			const query_skills = "SELECT id, graduate_id, skills_id FROM graduate_skills WHERE graduate_id = $1";
+			const graduate_skills = await db.query(query_skills, [graduateId]);
+
+			let skills_array_id = [];
+
+			if (graduate_skills.rows.length > 0) {
+				skills_array_id = graduate_skills.rows.map((skill) => {
+															return skill.skills_id;
+															});
+				graduate.rows[0].skills_array_id = skills_array_id;
+			} else {
+				graduate.rows[0].skills_array_id = [];
+			}
+
+			res.json(graduate.rows);
 		}
-		res.json(graduate.rows);
 	} catch (error) {
 		res.status(500).json(error);
 	}
