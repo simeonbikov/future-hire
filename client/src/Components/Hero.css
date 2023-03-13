@@ -43,6 +43,7 @@ body {
   .hero-image{
     margin-top: 40px;
     width: 100%;
+    object-fit: cover;
   }
 
   .hero-content {
@@ -52,6 +53,10 @@ body {
     color: white;
     font-family: "Helvetica";
   }
+
+
+
+
   
 
 
@@ -69,3 +74,5 @@ body {
   from { width: 0; }
   to { width: 100%; }
 }
+
+
