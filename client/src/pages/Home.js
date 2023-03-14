@@ -84,17 +84,18 @@ export function Home() {
 			<Hero title="Hire a Graduate" />
 			<div className="container">
 				<div className="text-center m-3 mt-5">
+
+					<h1>Discover the ideal candidate</h1>
+					<p className="fs-5">
+						Bridging the gap between talented CodeYourFuture graduates and
+						companies searching for competent candidates.
+					</p>
 					<SearchBar
 						filterSearch={setFilteredGraduates}
 						graduate={graduates}
 						setGraduate={setGraduates}
 						filter={filteredGraduates}
 					/>
-					<h1>Discover the ideal candidate</h1>
-					<p className="fs-5">
-						Bridging the gap between talented CodeYourFuture graduates and
-						companies searching for competent candidates.
-					</p>
 				</div>
 				<div className="skills-wrapper">
 					{allSkills.map((skill) => {
@@ -119,7 +120,8 @@ export function Home() {
 					})}
 				</div>
 			</div>
-			<Pagination className="btnDiv" totalPost={filteredGraduates.length} postPerPage={postPerPage} setCurrentPage={setCurrentPage} />
+
+			<Pagination  className="btnDiv" totalPost={filteredGraduates.length} postPerPage={postPerPage} setCurrentPage={setCurrentPage} />
 			<div className="new4"></div>
 			<div className="d-flex justify-content-center">
 				<TestimonialCard />
