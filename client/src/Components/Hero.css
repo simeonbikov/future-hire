@@ -48,7 +48,7 @@ body {
   .hero-content {
     text-align: center;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
     color: white;
     font-family: "Helvetica";
   }
@@ -57,15 +57,3 @@ body {
 
 }
 
-.autotype {
-  overflow: hidden; 
-  white-space: nowrap; 
-  font-size: 1em; 
-  letter-spacing: 0.1em; 
-  animation: autotype 4s steps(40, end);
-}
-
-@keyframes autotype {
-  from { width: 0; }
-  to { width: 100%; }
-}
