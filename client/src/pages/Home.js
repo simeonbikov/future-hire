@@ -6,6 +6,8 @@ import "./Home.css";
 import Hero from "../Components/Hero";
 import SkillButton from "../Components/SkillButton";
 import SearchBar from "../Components/SearchBar";
+import Pagination from "../Components/pagination";
+
 
 
 export function Home() {
@@ -13,6 +15,13 @@ export function Home() {
 	const [filteredGraduates, setFilteredGraduates] = useState([]);
 	const [allSkills, setAllSkills] = useState([]);
 	const [selectedSkills, setSelectedSkills] = useState([]);
+   //PAGINATION //
+   const [currentPage, setCurrentPage] = useState(1);
+   const [postPerPage, setPostPerPage] = useState(8);
+
+   const lastPostIndex = currentPage * postPerPage;
+   const firstPostIndex = lastPostIndex - postPerPage;
+   const currentPost= filteredGraduates.slice(firstPostIndex, lastPostIndex);
 
 	useEffect(() => {
 		fetch("api/graduates")
@@ -75,17 +84,18 @@ export function Home() {
 			<Hero title="Hire a Graduate" />
 			<div className="container">
 				<div className="text-center m-3 mt-5">
+
+					<h1>Discover the ideal candidate</h1>
+					<p className="fs-5">
+						Bridging the gap between talented CodeYourFuture graduates and
+						companies searching for competent candidates.
+					</p>
 					<SearchBar
 						filterSearch={setFilteredGraduates}
 						graduate={graduates}
 						setGraduate={setGraduates}
 						filter={filteredGraduates}
 					/>
-					<h1>Discover the ideal candidate</h1>
-					<p className="fs-5">
-						Bridging the gap between talented CodeYourFuture graduates and
-						companies searching for competent candidates.
-					</p>
 				</div>
 				<div className="skills-wrapper">
 					{allSkills.map((skill) => {
@@ -99,7 +109,7 @@ export function Home() {
 					})}
 				</div>
 				<div className="row m-5 text-center ">
-					{filteredGraduates.map((graduate) => {
+					{currentPost.map((graduate) => {
 						if (graduate.hired) {
 							return <HireCard key={graduate.id} graduate_detail={graduate} />;
 						} else {
@@ -110,10 +120,14 @@ export function Home() {
 					})}
 				</div>
 			</div>
+
+			<Pagination  className="btnDiv" totalPost={filteredGraduates.length} postPerPage={postPerPage} setCurrentPage={setCurrentPage} />
 			<div className="new4"></div>
 			<div className="d-flex justify-content-center">
 				<TestimonialCard />
+
 			</div>
+
 		</div>
 	);
 }
