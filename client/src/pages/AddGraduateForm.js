@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
+// import { useLocation } from "react-router";
 import "./AddGraduateForm.css";
 
 function AddGraduateForm() {
+
+	// const location = useLocation();
+	// const path = location.pathname.split("/")[2];
+
+	// const post = posts.find((p) => p.id.toString() === path);
+
 
 	const [formData, setFormData] = useState({
 		profilePicture_url: "",
