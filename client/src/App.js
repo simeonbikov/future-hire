@@ -16,6 +16,7 @@ const App = () => {
 		const getUser = () => {
 			fetch("http://localhost:3100/api/login/success", {
 				method: "GET",
+				withCredentials: true,
 				credentials: "include",
 				headers: {
 					Accept: "application/json",
