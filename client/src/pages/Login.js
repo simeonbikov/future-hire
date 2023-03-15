@@ -6,7 +6,7 @@ import photoprofile from "../Images/25231.png";
 const Login = () => {
 
 	const github = () => {
-		window.open("http://localhost:3100/api/auth/github", "_self");
+		window.open("http://localhost:3100/api/github", "_self");
 	};
 
   return (

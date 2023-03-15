@@ -6,8 +6,8 @@ const router = Router();
 
 //----------auth-----------
 
-const cookieSession = require("cookie-session");
-const cors = require("cors");
+// const cookieSession = require("cookie-session");
+// const cors = require("cors");
 require("./passport");
 const passport = require("passport");
 // const authRoute = require("./routes/auth");
@@ -15,26 +15,26 @@ const passport = require("passport");
 // const CLIENT_URL = "http://localhost:3000/";
 const CLIENT_URL = "/";
 
-router.use(
-	cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
-);
+// router.use(
+// 	cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
+// );
 
-router.use(passport.initialize());
-router.use(passport.session());
+// router.use(passport.initialize());
+// router.use(passport.session());
 
-router.use(
-	cors({
-		origin: "http://localhost:3000",
-		methods: "GET,POST,PUT,DELETE",
-		credentials: true,
-	})
-);
+// router.use(
+// 	cors({
+// 		origin: "http://localhost:3000",
+// 		methods: "GET,POST,PUT,DELETE",
+// 		credentials: true,
+// 	})
+// );
 
 // router.use("/auth", authRoute);
 
 
 
-router.get("/auth/login/success", (req, res) => {
+router.get("/login/success", (req, res) => {
 	if (req.user) {
 		res.status(200).json({
 			success: true,
@@ -45,26 +45,26 @@ router.get("/auth/login/success", (req, res) => {
 	}
 });
 
-router.get("/auth/login/failed", (req, res) => {
+router.get("/login/failed", (req, res) => {
 	res.status(401).json({
 		success: false,
 		message: "failure",
 	});
 });
 
-router.get("/auth/logout", (req, res) => {
+router.get("/logout", (req, res) => {
 	req.logout();
 	res.redirect(CLIENT_URL);
 });
 
-router.get("/auth/github", passport.authenticate("github", { scope: ["profile"] }));
-// router.get("/auth/github", passport.authenticate("github"));
+router.get("/github", passport.authenticate("github", { scope: ["profile"] }));
+// router.get("/github", passport.authenticate("github"));
 
 router.get(
-	"/auth/github/callback",
+	"/github/callback",
 	passport.authenticate("github", {
 		successRedirect: CLIENT_URL,
-		failureRedirect: "/auth/login/failed",
+		failureRedirect: "/login/failed",
 	})
 );
 
