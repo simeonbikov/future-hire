@@ -15,12 +15,10 @@ const apiRoot = "/api";
 const app = express();
 
 
-
 //=============a
-
-const cookieSession = require("cookie-session");
+const session = require("express-session");
+// const cookieSession = require("cookie-session");
 const cors = require("cors");
-require("./passport");
 const passport = require("passport");
 
 //=============
@@ -31,9 +29,23 @@ app.use(configuredMorgan());
 
 
 //=============a
+// app.use(
+// 	cookieSession({ name: "session", keys: ["KEY123"], maxAge: 24 * 60 * 60 * 100 })
+// );
+
 app.use(
-	cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
+	session({
+		secret: "secret123",
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			secure: false,
+			maxAge: 24 * 60 * 60 * 1000,
+		},
+	})
 );
+
+// app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());

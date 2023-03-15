@@ -24,7 +24,7 @@ const App = () => {
 				},
 			})
 				.then((response) => {
-					if (response.status === 200) {
+					if (response.status.ok) {
 						return response.json();
 					}
 					throw new Error("authentication has been failed!");
@@ -38,6 +38,8 @@ const App = () => {
 		};
 		getUser();
 	}, []);
+
+	console.log(user);
 
 	return (
 		<Layout>
