@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 80vh;
-  border: 0.9px solid rgba(0, 0, 0, 0.046);
+  border: 0.9px solid rgba(255, 255, 255, 0.972);
   border-radius: 10px;
   max-width: 400px;
   margin: 0 auto;
@@ -12,7 +12,7 @@
   margin-bottom: 20px;
   font-family: Helvetica;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
-  margin-top: 150px;
+  margin-top: 90px;
 }
 
 .login-form-container .login-form img {
@@ -31,41 +31,10 @@
   margin-left: 100px;
 }
 
-.login-form-container .input-group {
-  border: 1px solid black;
-  border-radius: 2rem;
-  padding: 0.5rem 1rem;
-  margin-left: 0px;
-}
-
-.login-form-container .input-icon {
-  margin-right: 0.5rem;
-}
-
-.login-form-container input[type="email"],
-.login-form-container input[type="password"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 10px;
-}
-
-.login-form-container input[type="email"]::placeholder,
-.login-form-container input[type="password"]::placeholder {
-  opacity: 0.5;
-}
-
-.login-form-container input[type="checkbox"] {
-  margin-right: 0.5rem;
-}
-
-.login-form-container label[for="rememberMe"] {
-  user-select: none;
-}
 
 
 .login-form-container a {
-  color: black;
+  color: rgb(255, 255, 255);
   text-decoration: underline;
   margin-left: 34px;
 }
@@ -75,7 +44,7 @@
   justify-content: center;
   align-items: center; 
   margin: 20px auto 0;
-  border: 2px solid black;
+  border: 2px solid rgb(0, 0, 0);
   padding: 10px;
   border-radius: 4px;
   --clr-font-main: hsla(0 0% 20% / 100);
@@ -113,10 +82,53 @@
   box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .btn-login {
-    transition: linear;
+@media screen and (max-width: 768px) {
+  .login-form-container .login-form {
+    height: 19em;
+    border: none;
+    border-radius: 2;
+    max-width: 100%;
+    margin: 0;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
   }
-}
+
+  .login-form-container .login-form img {
+    width: 30%;
+    max-width: 150px;
+    margin-bottom: 20px;
+  }
+
+  .login-form-container .form-group {
+    margin-bottom: 1rem;
+    margin-left: 0;
+  }
+
+
+  .login-form-container .input-icon {
+    margin-right: 0.5rem;
+  }
+
+
+  .login-form-container .btn-login {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .login-form-container a {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  }
+
+
+
+
 
 
