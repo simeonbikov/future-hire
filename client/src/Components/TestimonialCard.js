@@ -32,8 +32,7 @@ export function TestimonialCard() {
 							<div className="flex-grow-1 m-3">
 								<p className="fs-5 text-justify">
 									"Your willingness and ability to collaborate with other teams
-									is excellent.I saw that you learned how to use pivot tables
-									for your Excel project and it really helped display the data.”
+									is excellent.”
 								</p>
 								<p>
 									<img
@@ -63,8 +62,7 @@ export function TestimonialCard() {
 							<div className="flex-grow-1 m-3">
 								<p className="fs-5 text-justify">
 									"You embraces diversity and is open to growth
-									opportunities.Always value teamwork so much and listen to
-									colleague feedback and that matters to us."
+									opportunities."
 								</p>
 								<p>
 									<img
@@ -94,9 +92,7 @@ export function TestimonialCard() {
 							<div className="flex-grow-1 m-3">
 								<p className="fs-5 text-justify">
 									"You always work so passionately to make sure our customers
-									get the best experience and insight and they really are
-									reaping the rewards from your efforts! you're always so
-									authentic and enthusiastic.”
+									get the best experience.”
 								</p>
 								<p>
 									<img
@@ -125,10 +121,7 @@ export function TestimonialCard() {
 							</div>
 							<div className="flex-grow-1 m-3">
 								<p className="fs-5 text-justify">
-									“It’s fantastic to see how committed you are to learning and I
-									wanted to recognise your commitment and effort to learning new
-									parts of our system that you don’t normally have to tackle.
-									Your enthusiasm and drive to learn is inspiring.”
+									“It’s fantastic to see how committed you are.”
 								</p>
 								<p>
 									<img
