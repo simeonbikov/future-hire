@@ -20,6 +20,7 @@ const session = require("express-session");
 // const cookieSession = require("cookie-session");
 const cors = require("cors");
 const passport = require("passport");
+require("./passport");
 
 //=============
 
@@ -45,7 +46,7 @@ app.use(
 	})
 );
 
-// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
