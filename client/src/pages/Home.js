@@ -6,7 +6,7 @@ import "./Home.css";
 import Hero from "../Components/Hero";
 import SkillButton from "../Components/SkillButton";
 import SearchBar from "../Components/SearchBar";
-import Pagination from "../Components/pagination";
+import Pagination from "../Components/Pagination";
 
 
 
