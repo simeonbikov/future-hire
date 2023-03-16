@@ -2,7 +2,6 @@ import { Router } from "express";
 import logger from "./utils/logger";
 import db from "./db";
 
-
 const router = Router();
 
 router.get("/", (_, res) => {
@@ -43,21 +42,21 @@ router.get("/graduate_edit/:id", async (req, res) => {
 	const graduateId = parseInt(req.params.id);
 	const query =
 		"SELECT id, g.experience, g.full_name, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience FROM graduates g  WHERE id=$1";
-		try {
-			const graduate = await db.query(query, [graduateId]);
-			if (graduate.rows.length <= 0) {
-				res.sendStatus(404);
-			} else {
-
-			const query_skills = "SELECT id, graduate_id, skills_id FROM graduate_skills WHERE graduate_id = $1";
+	try {
+		const graduate = await db.query(query, [graduateId]);
+		if (graduate.rows.length <= 0) {
+			res.sendStatus(404);
+		} else {
+			const query_skills =
+				"SELECT id, graduate_id, skills_id FROM graduate_skills WHERE graduate_id = $1";
 			const graduate_skills = await db.query(query_skills, [graduateId]);
 
 			let skills_array_id = [];
 
 			if (graduate_skills.rows.length > 0) {
 				skills_array_id = graduate_skills.rows.map((skill) => {
-															return skill.skills_id;
-															});
+					return skill.skills_id;
+				});
 				graduate.rows[0].skills_array_id = skills_array_id;
 			} else {
 				graduate.rows[0].skills_array_id = [];
@@ -69,7 +68,6 @@ router.get("/graduate_edit/:id", async (req, res) => {
 		res.status(500).json(error);
 	}
 });
-
 
 // GET "/skills"
 router.get("/skills", async (_, res) => {
@@ -95,7 +93,6 @@ router.post("/graduate/register", async (req, res) => {
 	let experience = req.body.experience;
 	let skills = req.body.skills;
 
-
 	// validation
 	if (
 		!profilePicture_url ||
@@ -111,30 +108,30 @@ router.post("/graduate/register", async (req, res) => {
 	) {
 		return res.status(400).json("Please input the required fields");
 	} else {
-			const query =
-				"INSERT INTO graduates (full_name, cohort,passing_year,professional_interest,photo_url,portfolio_link,details,gitHub_link,linkedIn_link,experience) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *";
+		const query =
+			"INSERT INTO graduates (full_name, cohort,passing_year,professional_interest,photo_url,portfolio_link,details,gitHub_link,linkedIn_link,experience) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *";
 
-			const values = [
-				full_name,
-				cohort,
-				2023,
-				professional_interest,
-				profilePicture_url,
-				cv_link,
-				summary,
-				gitHub_url,
-				linkedIn_url,
-				experience,
-			];
+		const values = [
+			full_name,
+			cohort,
+			2023,
+			professional_interest,
+			profilePicture_url,
+			cv_link,
+			summary,
+			gitHub_url,
+			linkedIn_url,
+			experience,
+		];
 
 		db.query(query, values, (err, result) => {
-
 			if (err) {
 				console.error(err.stack);
 				res.status(500).json(err);
 			} else {
 				//if inserted in graduate table
-				const query_skill = "INSERT INTO GRADUATE_SKILLS (graduate_id, skills_id) VALUES ($1, $2)";
+				const query_skill =
+					"INSERT INTO GRADUATE_SKILLS (graduate_id, skills_id) VALUES ($1, $2)";
 
 				skills.forEach((skill) => {
 					db.query(query_skill, [result.rows[0].id, skill]).catch((error) => {
@@ -195,12 +192,12 @@ router.put("/graduate/update_profile/:id", async (req, res) => {
 		];
 
 		db.query(query, values)
-		.then(() => {
-
-			//update skills
-			//select current graduate skills
-			query = "SELECT id, graduate_id, skills_id FROM graduate_skills WHERE graduate_id = $1";
-			db.query(query, [id], (err, result) => {
+			.then(() => {
+				//update skills
+				//select current graduate skills
+				query =
+					"SELECT id, graduate_id, skills_id FROM graduate_skills WHERE graduate_id = $1";
+				db.query(query, [id], (err, result) => {
 					if (err) {
 						console.error(err.stack);
 						res.status(500).json(err);
@@ -208,22 +205,21 @@ router.put("/graduate/update_profile/:id", async (req, res) => {
 						const currentDBSkills = result.rows || [];
 
 						skills.forEach((skill_user_selected) => {
-							const skillIndex = currentDBSkills.findIndex((skill) => skill.skills_id === Number(skill_user_selected));
+							const skillIndex = currentDBSkills.findIndex(
+								(skill) => skill.skills_id === Number(skill_user_selected)
+							);
 							if (skillIndex === -1) {
 								query =
 									"INSERT INTO GRADUATE_SKILLS (graduate_id, skills_id) VALUES ($1, $2)";
 
-								db.query(query, [id, skill_user_selected]).catch(
-									(error) => {
-										console.error(error);
-										return res.status(500).json(error);
-									}
-								);
+								db.query(query, [id, skill_user_selected]).catch((error) => {
+									console.error(error);
+									return res.status(500).json(error);
+								});
 							}
 						});
 
 						currentDBSkills.forEach((skill_db_stored) => {
-
 							const skillIndex = skills.findIndex(
 								(skill_user_selected) =>
 									Number(skill_user_selected) === skill_db_stored.skills_id
@@ -235,19 +231,33 @@ router.put("/graduate/update_profile/:id", async (req, res) => {
 									return res.status(500).json(error);
 								});
 							}
-
 						});
 					}
+				});
+
+				res.status(200).json("Thankyou for updating.");
+			})
+			.catch((error) => {
+				console.error(error);
+				res.status(500).json(error);
 			});
-
-			res.status(200).json("Thankyou for updating.");
-		})
-		.catch((error) => {
-			console.error(error);
-			res.status(500).json(error);
-		});
-
 	}
+});
+// hired status update
+router.put("/graduate/update_hired_status/:id", async (req, res) => {
+	let id = req.params.id;
+	let hired = req.body.hired;
+
+	const query = "UPDATE graduates SET hired=$1 WHERE id=$2";
+	const values = [hired, id];
+
+	db.query(query, values, (err) => {
+		if (err) {
+			res.status(500).json(err);
+		} else {
+			res.status(200).json("Thankyou for letting us know.");
+		}
+	});
 });
 
 export default router;

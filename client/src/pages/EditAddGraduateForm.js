@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 import "./AddGraduateForm.css";
 
 function EditAddGraduateForm() {
-
 	const [formData, setFormData] = useState({
-		id : "",
+		id: "",
 		photo_url: "",
 		full_name: "",
 		cohort: "",
@@ -20,51 +22,63 @@ function EditAddGraduateForm() {
 		hired: "",
 		skills: [],
 	});
+	const [hiredButtonText, setHiredButtonText] = useState("I am Hired");
 	const [skills, setSkills] = useState([]);
 	const [isValid, setIsValid] = useState(true);
 	const [isValidLinkedInLink, setIsValidLinkedInLink] = useState(true);
 	const [isValidGitHubLink, setIsValidGitHubLink] = useState(true);
 	const [isSkillsSelected, setIsSkillsSelected] = useState(true);
+
 	const { id } = useParams();
 
 	useEffect(() => {
-    	fetch("/api/skills")
-		.then((res) => res.json())
-		.then((data) => {
-		setSkills([...data]);
+		fetch("/api/skills")
+			.then((res) => res.json())
+			.then((data) => {
+				setSkills([...data]);
 
-			fetch(`/api/graduate_edit/${id}`)
-				.then((res) => res.json())
-				.then((data) => {
-					let editData = {
-						id: id,
-						photo_url: data[0]?.photo_url || "",
-						full_name: data[0]?.full_name || "",
-						cohort: data[0]?.cohort || "",
-						passing_year: data[0]?.passing_year || "",
-						professional_interest: data[0]?.professional_interest || "",
-						portfolio_link: data[0]?.portfolio_link || "",
-						linkedIn_link: data[0]?.linkedin_link || "",
-						github_link: data[0]?.github_link || "",
-						details: data[0]?.details || "",
-						experience: data[0]?.experience || "",
-						hired: data[0]?.hired || "",
-						skills: data[0]?.skills_array_id || [],
-					};
-					linkedInValidation(editData.linkedIn_link);
-					gitHubValidation(editData.github_link);
-					skillsValidation(editData.skills);
-					setFormData(editData);
-				})
-				.catch((error) => {
-					console.error("There was an error loading skills!", error);
-				});
-		})
-		.catch((error) => {
-		console.error("There was an error loading skills!", error);
-		});
-
+				fetch(`/api/graduate_edit/${id}`)
+					.then((res) => res.json())
+					.then((data) => {
+						let editData = {
+							id: id,
+							photo_url: data[0]?.photo_url || "",
+							full_name: data[0]?.full_name || "",
+							cohort: data[0]?.cohort || "",
+							passing_year: data[0]?.passing_year || "",
+							professional_interest: data[0]?.professional_interest || "",
+							portfolio_link: data[0]?.portfolio_link || "",
+							linkedIn_link: data[0]?.linkedin_link || "",
+							github_link: data[0]?.github_link || "",
+							details: data[0]?.details || "",
+							experience: data[0]?.experience || "",
+							hired: data[0]?.hired || "",
+							skills: data[0]?.skills_array_id || [],
+						};
+						linkedInValidation(editData.linkedIn_link);
+						gitHubValidation(editData.github_link);
+						skillsValidation(editData.skills);
+						setFormData(editData);
+						hiredText(editData.hired);
+					})
+					.catch((error) => {
+						toast.error("There was an error loading skills!");
+						console.error("There was an error loading skills!", error);
+					});
+			})
+			.catch((error) => {
+				toast.error("There was an error loading details!");
+				console.error("There was an error loading skills!", error);
+			});
 	}, [id]);
+
+	const hiredText = (hired) => {
+		if (hired) {
+			setHiredButtonText("Looking for job");
+		} else {
+			setHiredButtonText("I am hired");
+		}
+	};
 
 	const handleInputChange = (event) => {
 		let { name, value } = event.target;
@@ -83,11 +97,11 @@ function EditAddGraduateForm() {
 	};
 
 	const skillsValidation = (skills) => {
-			if (skills.length === 0) {
-				setIsSkillsSelected(false);
-			} else {
-				setIsSkillsSelected(true);
-			}
+		if (skills.length === 0) {
+			setIsSkillsSelected(false);
+		} else {
+			setIsSkillsSelected(true);
+		}
 	};
 	const linkedInValidation = (link) => {
 		if (!link.toString().toLowerCase().includes("linkedin.com")) {
@@ -111,11 +125,13 @@ function EditAddGraduateForm() {
 		gitHubValidation(formData.github_link);
 		skillsValidation(formData.skills);
 		console.log(
-			`linked	${isValidLinkedInLink} ${linkedInValidation(formData.linkedIn_link)}`
+			`linked	${isValidLinkedInLink} ${linkedInValidation(
+				formData.linkedIn_link
+			)}`
 		);
 
 		if (
-		    formData.id === "" ||
+			formData.id === "" ||
 			formData.photo_url.trim() === "" ||
 			formData.full_name.trim() === "" ||
 			formData.cohort.trim() === "" ||
@@ -148,26 +164,65 @@ function EditAddGraduateForm() {
 			})
 			.then((data) => {
 				console.log("Success:", data);
-				alert("Thankyou for updating your profile.");
+				toast("Thankyou for updating your profile.");
 			})
 			.catch((error) => {
-				alert("Could not save!");
+				toast.error("Could not save!");
 				console.error("There was an error", error);
 			});
 	};
 
+	const handleHired_click = () => {
+		fetch(`/api/graduate/update_hired_status/${formData.id}`, {
+			method: "PUT",
+			body: JSON.stringify({ hired: !formData.hired }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(response.status);
+				} else {
+					hiredText(!formData.hired);
+					formData.hired = !formData.hired;
+					setFormData({ ...formData });
+					return response.json();
+				}
+			})
+			.then((data) => {
+				console.log("Success:", data);
+				toast("Thankyou for letting us know.");
+			})
+			.catch((error) => {
+				toast.error("Could not save!");
+				console.error("There was an error", error);
+			});
+	};
 
 	return (
 		<>
+			<ToastContainer
+				position="top-center"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
 			<br />
 			<br />
 			<div className="d-flex justify-content-center">
-				<div className="card_lg card shadow-lg py-3 px-4 w-75">
-					<p className="fs-4 text-center">
+				<div className="card_lg card shadow-lg py-5 px-5 w-75">
+					<p className="fs-4 mb-3 text-center">
 						Enter your details below to showcase your skills to potential
 						employers in the CodeYourFuture Page
 					</p>
-					<div className="w-100 d-flex justify-content-center">
+					<div className="w-100 mt-3 d-flex justify-content-center">
 						<form
 							className={`w-75 requires-validation ${
 								!isValid && "was-validated"
@@ -175,7 +230,7 @@ function EditAddGraduateForm() {
 							noValidate
 							onSubmit={handleSubmit}
 						>
-							<div className="w-50 mb-3 ">
+							<div className="w-75 mb-3 ">
 								<input
 									className="form-control"
 									type="text"
@@ -192,7 +247,7 @@ function EditAddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -209,7 +264,7 @@ function EditAddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -226,7 +281,7 @@ function EditAddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -243,7 +298,7 @@ function EditAddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -260,7 +315,7 @@ function EditAddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className={`form-control ${
 										!isValidLinkedInLink && "is-invalid"
@@ -279,7 +334,7 @@ function EditAddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className={`form-control ${
 										!isValidGitHubLink && "is-invalid"
@@ -332,13 +387,15 @@ function EditAddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-75 row container mt-5">
+							<div className="w-75 row container">
 								<div
 									className={`form-control ${
 										!isSkillsSelected && "is-invalid"
 									}`}
 								>
-									<label htmlFor="skills">Skills</label>
+									<label htmlFor="skills" className="">
+										Skills
+									</label>
 									<select
 										className="w-100"
 										name="skills"
@@ -369,6 +426,15 @@ function EditAddGraduateForm() {
 									className="btn btn-md btn-danger"
 								>
 									Submit
+								</button>
+								&nbsp; &nbsp;
+								<button
+									id="hired_button"
+									type="button"
+									className="btn btn-md btn-danger"
+									onClick={() => handleHired_click()}
+								>
+									{hiredButtonText}
 								</button>
 							</div>
 						</form>
