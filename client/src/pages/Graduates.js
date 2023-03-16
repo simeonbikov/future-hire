@@ -75,9 +75,11 @@ const Graduates = () => {
 							</Col>
 						</Row>
 					</Container>
-					<div>
+					<div className="d-flex flex-column">
 						<h4>Summary</h4>
-						<p>{graduateData.details}</p>
+						<p className="align-self-center w-50 text-justify">
+							{graduateData.details}
+						</p>
 					</div>
 					<div>
 						<h4>Skills</h4>
@@ -97,9 +99,11 @@ const Graduates = () => {
 							})}
 						</div>
 					</div>
-					<div>
+					<div className="d-flex flex-column">
 						<h4>Past Experience</h4>
-						<p>{graduateData.experience}</p>
+						<p className="align-self-center w-50 text-justify">
+							{graduateData.experience}
+						</p>
 					</div>
 					<div>
 						<Button
@@ -128,9 +132,13 @@ const Graduates = () => {
 						<Button
 							variant="danger"
 							size="lg"
-							className="profile-button rounded-pill">
-                <a href={`mailto:someone@yoursite.com?subject=Need Information about ${graduateData.full_name}&body=I need more information about this graduate`}>Contact CodeYourFuture</a>
-
+							className="profile-button rounded-pill"
+						>
+							<a
+								href={`mailto:someone@yoursite.com?subject=Need Information about ${graduateData.full_name}&body=I need more information about this graduate`}
+							>
+								Contact CodeYourFuture
+							</a>
 						</Button>
 					</div>
 				</div>

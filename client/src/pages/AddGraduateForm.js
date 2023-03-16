@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./AddGraduateForm.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddGraduateForm() {
-
 	const [formData, setFormData] = useState({
 		profilePicture_url: "",
 		full_name: "",
@@ -22,14 +23,15 @@ function AddGraduateForm() {
 	const [isSkillsSelected, setIsSkillsSelected] = useState(true);
 
 	useEffect(() => {
-    fetch("/api/skills")
-      .then((res) => res.json())
-      .then((data) => {
-        setSkills([...data]);
-      })
-      .catch((error) => {
-        console.error("There was an error loading skills!", error);
-      });
+		fetch("/api/skills")
+			.then((res) => res.json())
+			.then((data) => {
+				setSkills([...data]);
+			})
+			.catch((error) => {
+				toast.error("There was an error loading skills.");
+				console.error("There was an error loading skills!", error);
+			});
 	}, []);
 
 	const handleInputChange = (event) => {
@@ -49,11 +51,11 @@ function AddGraduateForm() {
 	};
 
 	const skillsValidation = (skills) => {
-			if (skills.length === 0) {
-				setIsSkillsSelected(false);
-			} else {
-				setIsSkillsSelected(true);
-			}
+		if (skills.length === 0) {
+			setIsSkillsSelected(false);
+		} else {
+			setIsSkillsSelected(true);
+		}
 	};
 	const linkedInValidation = (link) => {
 		if (!link.toString().toLowerCase().includes("linkedin.com")) {
@@ -88,7 +90,7 @@ function AddGraduateForm() {
 			formData.cv_link.trim() === "" ||
 			!isValidLinkedInUrl ||
 			!isValidGitHubUrl
-			) {
+		) {
 			setIsValid(false);
 			return;
 		}
@@ -110,10 +112,10 @@ function AddGraduateForm() {
 			.then((data) => {
 				console.log("Success:", data);
 				resetForm();
-				alert("Thankyou for registering with us.");
+				toast("Thankyou for registering with us.");
 			})
 			.catch((error) => {
-				alert("Could not save!");
+				toast.error("Could not save!");
 				console.error("There was an error", error);
 			});
 	};
@@ -135,15 +137,27 @@ function AddGraduateForm() {
 
 	return (
 		<>
+			<ToastContainer
+				position="top-center"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
 			<br />
 			<br />
 			<div className="d-flex justify-content-center">
-				<div className="card_lg card shadow-lg py-3 px-4 w-75">
-					<p className="fs-4 text-center">
+				<div className="card_lg card shadow-lg py-5 px-5 w-75">
+					<p className="fs-4  mb-3 text-center">
 						Enter your details below to showcase your skills to potential
 						employers in the CodeYourFuture Page
 					</p>
-					<div className="w-100 d-flex justify-content-center">
+					<div className="w-100 mt-3 d-flex justify-content-center">
 						<form
 							className={`w-75 requires-validation ${
 								!isValid && "was-validated"
@@ -151,7 +165,7 @@ function AddGraduateForm() {
 							noValidate
 							onSubmit={handleSubmit}
 						>
-							<div className="w-50 mb-3 ">
+							<div className="w-75 mb-3 ">
 								<input
 									className="form-control"
 									type="text"
@@ -168,7 +182,7 @@ function AddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -185,7 +199,7 @@ function AddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -202,7 +216,7 @@ function AddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -219,7 +233,7 @@ function AddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className="form-control"
 									type="text"
@@ -236,7 +250,7 @@ function AddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className={`form-control ${
 										!isValidLinkedInUrl && "is-invalid"
@@ -255,7 +269,7 @@ function AddGraduateForm() {
 								</div>
 							</div>
 
-							<div className="w-50 mb-3">
+							<div className="w-75 mb-3">
 								<input
 									className={`form-control ${
 										!isValidGitHubUrl && "is-invalid"
