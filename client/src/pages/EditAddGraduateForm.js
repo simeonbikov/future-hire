@@ -13,6 +13,7 @@ function EditAddGraduateForm() {
 		id: "",
 		photo_url: "",
 		full_name: "",
+		email: "",
 		cohort: "",
 		passing_year: "",
 		professional_interest: "",
@@ -46,6 +47,7 @@ function EditAddGraduateForm() {
 							id: id,
 							photo_url: data[0]?.photo_url || "",
 							full_name: data[0]?.full_name || "",
+							email:data[0]?.email || "",
 							cohort: data[0]?.cohort || "",
 							passing_year: data[0]?.passing_year || "",
 							professional_interest: data[0]?.professional_interest || "",
@@ -136,6 +138,7 @@ function EditAddGraduateForm() {
 			formData.id === "" ||
 			formData.photo_url.trim() === "" ||
 			formData.full_name.trim() === "" ||
+			formData.email.trim() === "" ||
 			formData.cohort.trim() === "" ||
 			formData.professional_interest.trim() === "" ||
 			formData.details.trim() === "" ||
@@ -267,6 +270,23 @@ function EditAddGraduateForm() {
 								/>
 								<div className="invalid-feedback">
 									Full Name field cannot be blank!
+								</div>
+							</div>
+
+							<div className="w-75 mb-3">
+								<input
+									className="form-control"
+									type=""
+									name="email"
+									id="email"
+									placeholder="Email Address"
+									maxLength="500"
+									onChange={handleInputChange}
+									required
+									value={formData.email}
+								/>
+								<div id="validationLinkedIn" className="invalid-feedback">
+									Please enter your email address.
 								</div>
 							</div>
 

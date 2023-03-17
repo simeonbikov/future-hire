@@ -12,7 +12,7 @@ router.get("/", (_, res) => {
 // GET "/graduates"
 router.get("/graduates", async (_, res) => {
 	const query =
-		"SELECT id, g.experience, g.full_name, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience, s.skills_array FROM graduates g INNER JOIN (SELECT gs.graduate_id AS id, array_agg(s.skill) AS skills_array FROM graduate_skills gs INNER JOIN skills s ON s.id = gs.skills_id GROUP BY gs.graduate_id) s USING (id) ORDER BY id";
+		"SELECT id, g.experience, g.full_name,g.email, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, email, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience, s.skills_array FROM graduates g INNER JOIN (SELECT gs.graduate_id AS id, array_agg(s.skill) AS skills_array FROM graduate_skills gs INNER JOIN skills s ON s.id = gs.skills_id GROUP BY gs.graduate_id) s USING (id) ORDER BY id";
 	try {
 		const graduates = await db.query(query);
 		res.json(graduates.rows);
@@ -25,7 +25,7 @@ router.get("/graduates", async (_, res) => {
 router.get("/graduates/:id", async (req, res) => {
 	const graduateId = parseInt(req.params.id);
 	const query =
-		"SELECT id, g.experience, g.full_name, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience, s.skills_array FROM graduates g INNER JOIN (SELECT gs.graduate_id AS id, array_agg(s.skill) AS skills_array FROM graduate_skills gs INNER JOIN skills s ON s.id = gs.skills_id GROUP BY gs.graduate_id) s USING (id) WHERE id=$1";
+		"SELECT id, g.experience, g.full_name, g.email, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, email, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience, s.skills_array FROM graduates g INNER JOIN (SELECT gs.graduate_id AS id, array_agg(s.skill) AS skills_array FROM graduate_skills gs INNER JOIN skills s ON s.id = gs.skills_id GROUP BY gs.graduate_id) s USING (id) WHERE id=$1";
 	try {
 		const graduate = await db.query(query, [graduateId]);
 		if (graduate.rows.length <= 0) {
@@ -57,7 +57,7 @@ router.get("/graduates/search/:email", async (req, res) => {
 router.get("/graduate_edit/:id", async (req, res) => {
 	const graduateId = parseInt(req.params.id);
 	const query =
-		"SELECT id, g.experience, g.full_name, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience FROM graduates g  WHERE id=$1";
+		"SELECT id, g.experience, g.full_name, g.email, g.cohort, g.passing_year, g.mobile, g.professional_interest, g.gender, g.photo_url, g.details, g.github_link, g.linkedin_link, g.portfolio_link, g.hired, g.experience AS experience, full_name,email, cohort, passing_year, mobile, professional_interest, gender, photo_url, details, github_link, linkedin_link, portfolio_link, hired, experience FROM graduates g  WHERE id=$1";
 	try {
 		const graduate = await db.query(query, [graduateId]);
 		if (graduate.rows.length <= 0) {
@@ -100,6 +100,7 @@ router.get("/skills", async (_, res) => {
 router.post("/graduate/register", async (req, res) => {
 	let profilePicture_url = req.body.profilePicture_url;
 	let full_name = req.body.full_name;
+	let email = req.body.email;
 	let cohort = req.body.cohort;
 	let professional_interest = req.body.professional_interest;
 	let cv_link = req.body.cv_link;
@@ -113,6 +114,7 @@ router.post("/graduate/register", async (req, res) => {
 	if (
 		!profilePicture_url ||
 		!full_name ||
+		!email ||
 		!cohort ||
 		!professional_interest ||
 		!cv_link ||
@@ -125,10 +127,11 @@ router.post("/graduate/register", async (req, res) => {
 		return res.status(400).json("Please input the required fields");
 	} else {
 		const query =
-			"INSERT INTO graduates (full_name, cohort,passing_year,professional_interest,photo_url,portfolio_link,details,gitHub_link,linkedIn_link,experience) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *";
+			"INSERT INTO graduates (full_name,email,cohort,passing_year,professional_interest,photo_url,portfolio_link,details,gitHub_link,linkedIn_link,experience) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *";
 
 		const values = [
 			full_name,
+			email,
 			cohort,
 			2023,
 			professional_interest,
@@ -166,6 +169,7 @@ router.put("/graduate/update_profile/:id", async (req, res) => {
 	let id = req.params.id;
 	let photo_url = req.body.photo_url;
 	let full_name = req.body.full_name;
+	let email = req.body.email;
 	let cohort = req.body.cohort;
 	let professional_interest = req.body.professional_interest;
 	let portfolio_link = req.body.portfolio_link;
@@ -179,6 +183,7 @@ router.put("/graduate/update_profile/:id", async (req, res) => {
 	if (
 		!photo_url ||
 		!full_name ||
+		!email ||
 		!cohort ||
 		!professional_interest ||
 		!portfolio_link ||
@@ -191,10 +196,11 @@ router.put("/graduate/update_profile/:id", async (req, res) => {
 		return res.status(400).json("Please input the required fields");
 	} else {
 		let query =
-			"UPDATE graduates SET full_name=$1, cohort=$2,passing_year=$3,professional_interest=$4,photo_url=$5,portfolio_link=$6,details=$7,gitHub_link=$8,linkedIn_link=$9,experience=$10 WHERE id=$11";
+			"UPDATE graduates SET full_name=$1,email=$2, cohort=$3,passing_year=$4,professional_interest=$5,photo_url=$6,portfolio_link=$7,details=$8,gitHub_link=$9,linkedIn_link=$10,experience=$11 WHERE id=$12";
 
 		const values = [
 			full_name,
+			email,
 			cohort,
 			2023,
 			professional_interest,
