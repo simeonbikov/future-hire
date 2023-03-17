@@ -1,12 +1,50 @@
 .testimonial {
-    background-color: rgb(224, 221, 221);
+  background-color: rgb(224, 221, 221);
 }
 
 .text-justify {
-    text-align: justify;
+  text-align: justify;
 }
 
 .testimonial-item {
-    margin-left: 10%;
-    margin-right: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+@media (max-width: 576px) {
+  .testimonial {
+    width: 100%;
+  }
+  
+  .testimonial .testimonial-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .testimonial .testimonial-item img {
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  
+  .testimonial .testimonial-item .col {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  
+  .testimonial .carousel-control-prev,
+  .testimonial .carousel-control-next {
+    font-size: 1.5rem;
+  }
+  
+  .testimonial .fs-5.text-justify {
+    margin-top: -40px; 
+  }
+
+  .testimonial-item .mb-3 {
+    margin-top: 0.1rem;
+  }
+  
+
+
+ 
 }
