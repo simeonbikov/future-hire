@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-
-import "./AddGraduateForm.css";
+import { auth } from "../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 function EditAddGraduateForm() {
+	const [user] = useAuthState(auth);
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		id: "",
 		photo_url: "",
@@ -199,6 +201,10 @@ function EditAddGraduateForm() {
 				console.error("There was an error", error);
 			});
 	};
+
+	if (!user) {
+		return navigate("/");
+	}
 
 	return (
 		<>

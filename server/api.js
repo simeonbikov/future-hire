@@ -37,6 +37,22 @@ router.get("/graduates/:id", async (req, res) => {
 	}
 });
 
+// GET "/graduates/search/{email}"
+router.get("/graduates/search/:email", async (req, res) => {
+	const graduateEmail = req.params.email;
+	const query =
+		"SELECT * FROM graduates WHERE email=$1";
+	try {
+		const graduate = await db.query(query, [graduateEmail]);
+		if (graduate.rows.length <= 0) {
+			res.sendStatus(404);
+		}
+		res.json(graduate.rows);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
+
 // GET "/graduates/{id}"
 router.get("/graduate_edit/:id", async (req, res) => {
 	const graduateId = parseInt(req.params.id);
