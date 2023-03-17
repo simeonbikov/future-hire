@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "../pages/Login.css";
 import photoprofile from "../Images/25231.png";
 import { signInWithPopup, GithubAuthProvider } from "firebase/auth";
-import { auth } from "./utils/firebase";
+import { auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 

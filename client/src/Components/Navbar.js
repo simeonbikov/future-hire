@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../Components/Navbar.css";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../pages/utils/firebase";
+import { auth } from "../utils/firebase";
 // import { useNavigate } from "react-router-dom";
 
 function Navbar(props) {
