@@ -6,6 +6,7 @@ function AddGraduateForm() {
 	const [formData, setFormData] = useState({
 		profilePicture_url: "",
 		full_name: "",
+		email: "",
 		cohort: "",
 		professional_interest: "",
 		cv_link: "",
@@ -56,6 +57,7 @@ function AddGraduateForm() {
 			setIsSkillsSelected(true);
 		}
 	};
+
 	const linkedInValidation = (link) => {
 		if (!link.toString().toLowerCase().includes("linkedin.com")) {
 			setIsValidLinkedInUrl(false);
@@ -81,6 +83,7 @@ function AddGraduateForm() {
 		if (
 			formData.profilePicture_url.trim() === "" ||
 			formData.full_name.trim() === "" ||
+			formData.email.trim() === "" ||
 			formData.cohort.trim() === "" ||
 			formData.professional_interest.trim() === "" ||
 			formData.summary.trim() === "" ||
@@ -123,6 +126,7 @@ function AddGraduateForm() {
 		setFormData({
 			profilePicture_url: "",
 			full_name: "",
+			email: "",
 			cohort: "",
 			professional_interest: "",
 			cv_link: "",
@@ -195,6 +199,23 @@ function AddGraduateForm() {
 								/>
 								<div className="invalid-feedback">
 									Full Name field cannot be blank!
+								</div>
+							</div>
+
+							<div className="w-75 mb-3">
+								<input
+									className="form-control"
+									type="email"
+									name="email"
+									id="email"
+									placeholder="Email Address"
+									maxLength="500"
+									onChange={handleInputChange}
+									required
+									value={formData.email}
+								/>
+								<div id="validationLinkedIn" className="invalid-feedback">
+									Please enter your email address.
 								</div>
 							</div>
 
