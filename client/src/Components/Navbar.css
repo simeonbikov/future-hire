@@ -44,6 +44,7 @@
   .navbar-desktop a:last-child {
   color: red;
   text-decoration: none; 
+  cursor: pointer;
   }
   
   .navigation {
@@ -74,9 +75,7 @@
     color: black;
     text-decoration: none; 
   }
-  
-  
-  
+
   .navbar-desktop__links {
   display: flex;
   align-items: center;

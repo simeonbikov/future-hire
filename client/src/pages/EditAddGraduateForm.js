@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import "./AddGraduateForm.css";
+import { auth } from "./utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 function EditAddGraduateForm() {
+	const [user] = useAuthState(auth);
+	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState({
-		id : "",
+		id: "",
 		photo_url: "",
 		full_name: "",
 		cohort: "",
@@ -28,42 +31,41 @@ function EditAddGraduateForm() {
 	const { id } = useParams();
 
 	useEffect(() => {
-    	fetch("/api/skills")
-		.then((res) => res.json())
-		.then((data) => {
-		setSkills([...data]);
+		fetch("/api/skills")
+			.then((res) => res.json())
+			.then((data) => {
+				setSkills([...data]);
 
-			fetch(`/api/graduate_edit/${id}`)
-				.then((res) => res.json())
-				.then((data) => {
-					let editData = {
-						id: id,
-						photo_url: data[0]?.photo_url || "",
-						full_name: data[0]?.full_name || "",
-						cohort: data[0]?.cohort || "",
-						passing_year: data[0]?.passing_year || "",
-						professional_interest: data[0]?.professional_interest || "",
-						portfolio_link: data[0]?.portfolio_link || "",
-						linkedIn_link: data[0]?.linkedin_link || "",
-						github_link: data[0]?.github_link || "",
-						details: data[0]?.details || "",
-						experience: data[0]?.experience || "",
-						hired: data[0]?.hired || "",
-						skills: data[0]?.skills_array_id || [],
-					};
-					linkedInValidation(editData.linkedIn_link);
-					gitHubValidation(editData.github_link);
-					skillsValidation(editData.skills);
-					setFormData(editData);
-				})
-				.catch((error) => {
-					console.error("There was an error loading skills!", error);
-				});
-		})
-		.catch((error) => {
-		console.error("There was an error loading skills!", error);
-		});
-
+				fetch(`/api/graduate_edit/${id}`)
+					.then((res) => res.json())
+					.then((data) => {
+						let editData = {
+							id: id,
+							photo_url: data[0]?.photo_url || "",
+							full_name: data[0]?.full_name || "",
+							cohort: data[0]?.cohort || "",
+							passing_year: data[0]?.passing_year || "",
+							professional_interest: data[0]?.professional_interest || "",
+							portfolio_link: data[0]?.portfolio_link || "",
+							linkedIn_link: data[0]?.linkedin_link || "",
+							github_link: data[0]?.github_link || "",
+							details: data[0]?.details || "",
+							experience: data[0]?.experience || "",
+							hired: data[0]?.hired || "",
+							skills: data[0]?.skills_array_id || [],
+						};
+						linkedInValidation(editData.linkedIn_link);
+						gitHubValidation(editData.github_link);
+						skillsValidation(editData.skills);
+						setFormData(editData);
+					})
+					.catch((error) => {
+						console.error("There was an error loading skills!", error);
+					});
+			})
+			.catch((error) => {
+				console.error("There was an error loading skills!", error);
+			});
 	}, [id]);
 
 	const handleInputChange = (event) => {
@@ -83,11 +85,11 @@ function EditAddGraduateForm() {
 	};
 
 	const skillsValidation = (skills) => {
-			if (skills.length === 0) {
-				setIsSkillsSelected(false);
-			} else {
-				setIsSkillsSelected(true);
-			}
+		if (skills.length === 0) {
+			setIsSkillsSelected(false);
+		} else {
+			setIsSkillsSelected(true);
+		}
 	};
 	const linkedInValidation = (link) => {
 		if (!link.toString().toLowerCase().includes("linkedin.com")) {
@@ -111,11 +113,13 @@ function EditAddGraduateForm() {
 		gitHubValidation(formData.github_link);
 		skillsValidation(formData.skills);
 		console.log(
-			`linked	${isValidLinkedInLink} ${linkedInValidation(formData.linkedIn_link)}`
+			`linked	${isValidLinkedInLink} ${linkedInValidation(
+				formData.linkedIn_link
+			)}`
 		);
 
 		if (
-		    formData.id === "" ||
+			formData.id === "" ||
 			formData.photo_url.trim() === "" ||
 			formData.full_name.trim() === "" ||
 			formData.cohort.trim() === "" ||
@@ -156,6 +160,9 @@ function EditAddGraduateForm() {
 			});
 	};
 
+	if (!user) {
+		return navigate("/");
+	}
 
 	return (
 		<>
