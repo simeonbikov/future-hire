@@ -7,14 +7,15 @@ import Hero from "../Components/Hero";
 import SkillButton from "../Components/SkillButton";
 import SearchBar from "../Components/SearchBar";
 import Pagination from "../Components/Pagination";
-
-
+import { Spinner } from "react-bootstrap";
 
 export function Home() {
 	const [graduates, setGraduates] = useState([]);
 	const [filteredGraduates, setFilteredGraduates] = useState([]);
 	const [allSkills, setAllSkills] = useState([]);
 	const [selectedSkills, setSelectedSkills] = useState([]);
+	const [loading, setLoading] = useState(true);
+
    //PAGINATION //
    const [currentPage, setCurrentPage] = useState(1);
    const [postPerPage, setPostPerPage] = useState(8);
@@ -30,6 +31,7 @@ export function Home() {
 				setGraduates(data);
 				setFilteredGraduates(data);
 				getSkills(data);
+				setLoading(false);
 			});
 	}, []);
 
@@ -84,7 +86,6 @@ export function Home() {
 			<Hero title="Hire a Graduate" />
 			<div className="container">
 				<div className="text-center m-3 mt-5">
-
 					<h1>Discover the ideal candidate</h1>
 					<p className="fs-5">
 						Bridging the gap between talented CodeYourFuture graduates and
@@ -97,6 +98,12 @@ export function Home() {
 						filter={filteredGraduates}
 					/>
 				</div>
+				{loading && (
+					<div className="loading-message">
+						<Spinner animation="border" variant="primary" /> <br />
+						<span>Loading, please wait...</span>
+					</div>
+				)}
 				<div className="skills-wrapper">
 					{allSkills.map((skill) => {
 						return (
@@ -121,13 +128,16 @@ export function Home() {
 				</div>
 			</div>
 
-			<Pagination  className="btnDiv" totalPost={filteredGraduates.length} postPerPage={postPerPage} setCurrentPage={setCurrentPage} />
+			<Pagination
+				className="btnDiv"
+				totalPost={filteredGraduates.length}
+				postPerPage={postPerPage}
+				setCurrentPage={setCurrentPage}
+			/>
 			<div className="new4"></div>
 			<div className="d-flex justify-content-center">
 				<TestimonialCard />
-
 			</div>
-
 		</div>
 	);
 }
