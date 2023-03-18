@@ -11,7 +11,7 @@ import Helmet from "react-helmet";
 const App = () => {
   return (
 		<Layout>
-			 <Helmet>
+			<Helmet>
                 <meta charSet="utf-8" />
                 <title>Future Hire</title>
                 <link rel="canonical" href="https://cyf-future-hire.onrender.com/" />
@@ -24,7 +24,7 @@ const App = () => {
 				<Route path="/Contact" element={<Contact />} />
 				<Route path="/register" element={<AddGraduateForm />} />
 				<Route path="/updateProfile/:id" element={<EditAddGraduateForm />} />
-        <Route path="/Login" element={<Login />} />
+                <Route path="/Login" element={<Login />} />
 			</Routes>
 		</Layout>
 	);

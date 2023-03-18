@@ -34,9 +34,9 @@ function Navbar(props) {
 			)}
 			{user && (
 				<>
-					<a href onClick={() => auth.signOut()}>
+					<button onClick={() => auth.signOut()} className="button-link">
 						Sign Out
-					</a>
+					</button>
 				</>
 			)}
 		</>
