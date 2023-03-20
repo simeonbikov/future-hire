@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 import "../Components/Navbar.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar(props) {
 	const [user] = useAuthState(auth);
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
-	// if (user) {
-	// 	return navigate("/");
-	// }
+	const btnClickHandler = () => {
+		navigate("/");
+		auth.signOut();
+	};
 
 	return (
 		<>
@@ -27,14 +28,11 @@ function Navbar(props) {
 					<Link to="/Login" onClick={props.onClick}>
 						Login
 					</Link>
-					<Link to="/register" onClick={props.onClick}>
-						Register
-					</Link>
 				</>
 			)}
 			{user && (
 				<>
-					<button onClick={() => auth.signOut()} className="button-link">
+					<button onClick={btnClickHandler} className="button-link">
 						Sign Out
 					</button>
 				</>
@@ -44,26 +42,3 @@ function Navbar(props) {
 }
 
 export default Navbar;
-
-
-
-// import { useNavigate } from "react-router-dom";
-
-//     const navigate = useNavigate();
-
-//     const handleClick = () => {
-//         navigate("/path/to/push");
-//     }
-
-
-// import React, { Component } from 'react';
-// import { Redirect } from 'react-router';
-// export default class LoginComponent extends Component {
-//     render(){
-//         if(this.state.isLoggedIn === true){
-//             return (<Redirect to="/your/redirect/page" />);
-//         }else{
-//             return (<div>Login Please</div>);
-//         }
-//     }
-// }

@@ -11,7 +11,7 @@ const Graduates = () => {
 	const { id } = useParams();
 
 	const goBack = () => {
-		navigate(-1);
+		navigate("/");
 	};
 
 	const getData = async () => {

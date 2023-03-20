@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { auth } from "../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function AddGraduateForm() {
+	const [user] = useAuthState(auth);
 	const [formData, setFormData] = useState({
 		profilePicture_url: "",
 		full_name: "",
-		email: "",
+		email: user.email,
 		cohort: "",
 		professional_interest: "",
 		cv_link: "",
@@ -208,11 +211,12 @@ function AddGraduateForm() {
 									type="email"
 									name="email"
 									id="email"
-									placeholder="Email Address"
+									placeholder={user.email}
 									maxLength="500"
 									onChange={handleInputChange}
 									required
 									value={formData.email}
+									readOnly="readonly"
 								/>
 								<div id="validationLinkedIn" className="invalid-feedback">
 									Please enter your email address.

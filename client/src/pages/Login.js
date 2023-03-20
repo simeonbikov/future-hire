@@ -10,10 +10,13 @@ const Login = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
-
 	const getData = async (email) => {
 		try {
 			const res = await fetch(`/api/graduates/search/${email}`);
+			if (res.status === 400) {
+				navigate("/register");
+				return;
+			}
 			if (!res.ok) {
 				return;
 			}
@@ -21,8 +24,6 @@ const Login = () => {
 			const graduate = allData[0];
 			if (graduate.id) {
 				navigate(`/updateProfile/${graduate.id}`);
-			} else {
-				navigate("/register");
 			}
 		} catch (err) {
 			console.error(`An error occurred: ${err}`);

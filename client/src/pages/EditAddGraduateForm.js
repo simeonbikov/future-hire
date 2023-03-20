@@ -7,8 +7,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
 function EditAddGraduateForm() {
-	const [user] = useAuthState(auth);
-	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		id: "",
 		photo_url: "",
@@ -31,6 +29,8 @@ function EditAddGraduateForm() {
 	const [isValidLinkedInLink, setIsValidLinkedInLink] = useState(true);
 	const [isValidGitHubLink, setIsValidGitHubLink] = useState(true);
 	const [isSkillsSelected, setIsSkillsSelected] = useState(true);
+	const [user] = useAuthState(auth);
+	const navigate = useNavigate();
 
 	const { id } = useParams();
 
@@ -175,6 +175,8 @@ function EditAddGraduateForm() {
 				toast.error("Could not save!");
 				console.error("There was an error", error);
 			});
+			navigate(`/graduates/${formData.id}`);
+			auth.signOut();
 	};
 
 	const handleHired_click = () => {
@@ -284,6 +286,7 @@ function EditAddGraduateForm() {
 									onChange={handleInputChange}
 									required
 									value={formData.email}
+									readOnly="readonly"
 								/>
 								<div id="validationLinkedIn" className="invalid-feedback">
 									Please enter your email address.

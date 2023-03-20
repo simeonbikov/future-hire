@@ -45,7 +45,8 @@ router.get("/graduates/search/:email", async (req, res) => {
 	try {
 		const graduate = await db.query(query, [graduateEmail]);
 		if (graduate.rows.length <= 0) {
-			res.sendStatus(404);
+			res.sendStatus(400);
+			return;
 		}
 		res.json(graduate.rows);
 	} catch (error) {
